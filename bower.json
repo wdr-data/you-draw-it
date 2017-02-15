@@ -1,0 +1,21 @@
+{
+  "name": "you-draw-it",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Marcus Weiner <marcus.weiner@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "d3": "^4.5.0"
+  }
+}

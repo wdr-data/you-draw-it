@@ -1,0 +1,7 @@
+node_modules/
+bower_components/
+
+data_raw/
+.tmp/
+
+*.zip

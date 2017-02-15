@@ -1,0 +1,29 @@
+{
+  "name": "you-draw-it",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gulp-webpack": "^1.5.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1",
+    "gulp-data": "^1.2.1",
+    "gulp-handlebars-html": "0.0.2",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-swig": "^0.8.0",
+    "handlebars": "^4.0.6",
+    "js-yaml": "^3.8.1",
+    "lodash": "^4.17.4",
+    "markdown-it": "^8.2.2",
+    "marked": "^0.3.6",
+    "yaml": "^0.3.0"
+  }
+}

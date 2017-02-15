@@ -1,0 +1,15 @@
+heading: "Die Zahl der **Kinder unter 15, die von Hartz IV leben** ..."
+result: >
+  **... steigt seit 2010 stetig an**
+
+  2010 lag die SGB-II-Quote bei 15,7 %, bis 2015 stieg sie auf 18,1 %. Das bedeutet, dass fast jeder fünfte Jugendliche in NRW von Hartz IV lebt. Bei der Kinderarmut ist die Spanne innerhalb von NRW sehr groß: Während Kreise wie Coesfeld, Borken und Olpe bei unter 8 % liegen, kommen Städte wie Mönchengladbach und Essen auf rund 32 %. In Gelsenkirchen leben sogar 37 % der Kinder unter 15 Jahren von Hartz IV. Das ist mehr als jedes 3. Kind. Die sogenannte 'SGB-II-Quote' beschreibt den Anteil der Kinder unter 15 Jahren, die von Hartz IV leben an allen Kindern dieses Alters in NRW. Dieser Indikator wird vor allem auf kommunaler Ebene zur Abschätzung der Armut bei Kindern herangezogen.
+data:
+  2007: 17.1129
+  2008: 16.2349
+  2009: 16.5997
+  2010: 15.6974
+  2011: 15.8
+  2012: 16.5
+  2013: 17.2
+  2014: 17.8
+  2015: 18.1
