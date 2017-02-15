@@ -1,0 +1,18 @@
+heading: Die Zahl der bei der **Polizei bekannt gewordenen Fälle** ...**
+result: >
+        ... hat sich **seit 2005 kaum verändert.** 
+Die bekannt gewordenen Fälle in NRW schwanken seit 2005 rund um 1,5 Mio pro Jahr. Das war auch schon 1995 so. 2015 gab es 915 Fälle weniger als 2012. Auch die Aufklärungsquote liegt seit 2005 immer etwa bei 50 %. In der 'Polizeilichen Kriminalstatistik' werden alle bei der Polizei gemeldeten Straftaten erfasst, einschließlich versuchter Straftaten. Nicht enthalten sind Staatsschutzdelikte, Verkehrsdelikte, Ordnungswidrigkeiten, Delikte, die nicht zum Aufgabenbereich der Polizei gehören (z.B. Finanz- und Steuerdelikte) und Straftaten, die unmittelbar bei der Staatsanwaltschaft angezeigt werden.
+
+        
+data:
+2005: 1503451
+2006: 1491897
+2007: 1495333
+2008: 1453203
+2009: 1458438
+2010: 1442801
+2011: 1511469
+2012: 1518363
+2013: 1484943
+2014: 1501125
+2015: 1517448
