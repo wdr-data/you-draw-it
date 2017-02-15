@@ -7,14 +7,16 @@ const md = require('markdown-it')();
 const _ = require('lodash');
 const $ = require('gulp-load-plugins')();
 
+const dist = 'build';
+
 gulp.task('styles', function() {
     return gulp.src('main.sass')
         .pipe($.sass())
-        .pipe(gulp.dest('.tmp'));
+        .pipe(gulp.dest('.tmp'))
+        .pipe(gulp.dest(dist));
 });
 
 gulp.task('templates', function() {
-
     return gulp.src('*.html')
         .pipe($.data(function() {
             const files = fs.readdirSync('data');
@@ -30,7 +32,8 @@ gulp.task('templates', function() {
             };
         }))
         .pipe($.swig({ defaults: { cache: false } }))
-        .pipe(gulp.dest('.tmp'));
+        .pipe(gulp.dest('.tmp'))
+        .pipe(gulp.dest(dist))
 });
 
 gulp.task('scripts', function() {
@@ -40,7 +43,8 @@ gulp.task('scripts', function() {
                 filename: 'app.js'
             }
         }))
-        .pipe(gulp.dest('.tmp'));
+        .pipe(gulp.dest('.tmp'))
+        .pipe(gulp.dest(dist));
 });
 
 gulp.task('serve', ['styles', 'templates'], function() {
@@ -54,3 +58,10 @@ gulp.task('serve', ['styles', 'templates'], function() {
     gulp.watch(['*.html', 'data/*.yml'], ['templates', browserSync.reload]);
     gulp.watch('*.sass', ['styles', browserSync.reload]);
 });
+
+gulp.task('copy:dist', function() {
+    return gulp.src(['bower_components/**/*', 'app.js'], { base: './' })
+        .pipe(gulp.dest(dist));
+});
+
+gulp.task('default', ['styles', 'templates', 'copy:dist']);
