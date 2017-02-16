@@ -64,9 +64,9 @@
         <div class="questions">
             {% for question in data %}
             <div class="question">
-                <h2>{% autoescape false %}{{ question.heading }}{% endautoescape %}</h2>
+                <h2>{{ question.heading|mdi }}</h2>
                 <div class="you-draw-it {{ question.key }}" data-key="{{ question.key }}"></div>
-                {% autoescape false %}{{ question.result }}{% endautoescape %}
+                {{ question.result|md }}
                 <script>
                     window.ydi_data = window.ydi_data || {};
                     window.ydi_data['{{ question.key }}'] = {% autoescape false %}{{ question.data|json_encode }}{% endautoescape %};
