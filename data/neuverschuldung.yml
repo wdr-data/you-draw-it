@@ -1,7 +1,7 @@
 heading: Die Nettoneuverschuldung in NRW ...
 result: >
-        ... stand im Jahr 2015 bei 0. Das heißt, dass das Land in diesem Jahr einen Überschuss von etwas mehr als 200 Millionen Euro verzeichnet hat, der in die Tilgung bisheriger Schulden geflossen ist.
-        
+        ... stand im Jahr 2016 bei 0. Das heißt, dass das Land in diesem Jahr einen Überschuss von etwas mehr als 200 Millionen Euro verzeichnet hat, der in die Tilgung bisheriger Schulden geflossen ist.
+ 
 data:
 2000: 3525,5
 2001: 5365,1
@@ -19,3 +19,4 @@ data:
 2013: 3173,5
 2014: 2297,1
 2015: 1811,4
+2016: 0
