@@ -3,7 +3,8 @@ const path = require('path');
 const gulp = require('gulp');
 const browserSync = require('browser-sync').create();
 const yaml = require('js-yaml');
-const md = require('markdown-it')();
+const markdownIt = require('markdown-it')();
+const marked = require('marked');
 const _ = require('lodash');
 const $ = require('gulp-load-plugins')();
 
@@ -21,17 +22,32 @@ gulp.task('templates', function() {
         .pipe($.data(function() {
             const files = fs.readdirSync('data');
             const data = files.map(function(file) {
-                var filedata = yaml.load(fs.readFileSync(path.join('data', file)).toString());
+                let filedata = yaml.load(fs.readFileSync(path.join('data', file)).toString());
                 filedata.key = path.basename(file, '.yml');
-                filedata.heading = md.renderInline(filedata.heading);
-                filedata.result = md.render(filedata.result);
                 return filedata;
             });
             return {
                 data: data
             };
         }))
-        .pipe($.swig({ defaults: { cache: false } }))
+        .pipe($.swig({
+            defaults: { cache: false },
+            setup: function(swig) {
+                const md = function(input) {
+                    return marked(input, {
+                        breaks: true
+                    });
+                };
+                md.safe = true;
+                swig.setFilter('md', md);
+
+                const mdi = function(input) {
+                    return markdownIt.renderInline(input);
+                };
+                mdi.safe = true;
+                swig.setFilter('mdi', mdi);
+            }
+        }))
         .pipe(gulp.dest('.tmp'))
         .pipe(gulp.dest(dist))
 });
