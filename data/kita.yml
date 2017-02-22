@@ -3,13 +3,13 @@ result: >
         ... **ist seit 2012 von 18,1 % auf 25,7 % gestiegen.** Trotzdem bleibt das bevölkerungsreichste Bundesland NRW damit in Deutschland Schlusslicht bei der U3-Betreuungsquote. Zudem gibt es bei der Betreuungsquote innerhalb Nordrhein-Westfalens große Unterschiede.
 
 data:
-	2007: 6,9
-	2008: 9,3
-	2009: 11,5
-	2010: 14
-	2011: 15,9
-	2012: 18,1
-	2013: 19,9
-	2014: 23,8
-	2015: 25,8
-	2016: 25,7
+  2007: 6,9
+  2008: 9,3
+  2009: 11,5
+  2010: 14
+  2011: 15,9
+  2012: 18,1
+  2013: 19,9
+  2014: 23,8
+  2015: 25,8
+  2016: 25,7

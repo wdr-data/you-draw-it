@@ -3,14 +3,14 @@ result: >
         ... **zeigt sich in den letzten fünf Jahren wechselhaft.** 2012 und 2013 stieg das Bruttoinlandsprodukt nur minimal. Dann folgte ein Anstieg von 1,75 Prozent, 2015 musste NRW ein Nullwachstum hinnehmen. Interessant in diesem Zusammenhang: Der Vergleich mit dem Wachstum in anderen Bundesländern.
         
 data:
-	2005: 0.511257
-	2006: 2.915232
-	2007: 3.996859
-	2008: 1.416745
-	2009: -5.349136
-	2010: 2.507021
-	2011: 2.707334
-	2012: 0.159348
-	2013: 0.220275
-	2014: 1.751689
-	2015: -0.008308
+  2005: 0.511257
+  2006: 2.915232
+  2007: 3.996859
+  2008: 1.416745
+  2009: -5.349136
+  2010: 2.507021
+  2011: 2.707334
+  2012: 0.159348
+  2013: 0.220275
+  2014: 1.751689
+  2015: -0.008308
