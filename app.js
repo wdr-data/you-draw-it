@@ -10,6 +10,11 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
+        if(data.length < 1) {
+            console.log("No data available for:", key);
+            return;
+        }
+
         const minYear = data[0].year;
         const maxYear = data[data.length - 1].year;
         const medianYear = 2012;
