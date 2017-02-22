@@ -19,7 +19,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const minYear = data[0].year;
         const maxYear = data[data.length - 1].year;
-        const medianYear = 2012;
+        const periods = [
+            { year: 2010, class: 'black' },
+            { year: 2012, class: 'red' }
+        ];
+        const medianYear = periods[periods.length-1].year;
         const minY = d3.min(data, d => d.value);
         const maxY = d3.max(data, d => d.value);
 
@@ -102,7 +106,11 @@ document.addEventListener("DOMContentLoaded", function() {
         drawAxis(c);
 
         // make chart
-        drawChart((d, i) => d.year <= medianYear, 'black');
+        periods.forEach((entry, key) => {
+            const lower = key > 0 ? periods[key-1].year : 0;
+            const upper = entry.year;
+            drawChart((d, i) => d.year >= lower && d.year <= upper, entry.class);
+        });
         const resultCharts = drawChart((d, i) => d.year >= medianYear, 'red').map(e => e.attr('opacity', 0));
 
         const userSel = c.svg.append('path').attr('class', 'your-line');
