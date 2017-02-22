@@ -65,10 +65,12 @@ gulp.task('scripts', function() {
 
 gulp.task('serve', ['styles', 'templates'], function() {
     browserSync.init({
-        server: {
-            baseDir: ['.tmp', "./"]
-        }
-    });
+      server: {
+          baseDir: ['.tmp', "./"]
+      },
+      open: false
+  });
+
 
     gulp.watch(['*.js'], browserSync.reload);
     gulp.watch(['*.html', 'data/*.yml'], ['templates', browserSync.reload]);
