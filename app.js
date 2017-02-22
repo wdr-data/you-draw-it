@@ -1,5 +1,3 @@
-//import * as d3 from 'd3';
-
 document.addEventListener("DOMContentLoaded", function() {
     d3.selectAll('.you-draw-it').each(function() {
         const sel = d3.select(this);
