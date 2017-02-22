@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .on('drag', () => {
                 const pos = d3.mouse(c.svg.node());
                 const year = clamp(medianYear, maxYear, c.x.invert(pos[0]));
-                const value = clamp(0, c.y.domain()[1], c.y.invert(pos[1]));
+                const value = clamp(c.y.domain()[0], c.y.domain()[1], c.y.invert(pos[1]));
 
                 yourData.forEach(d => {
                     if (Math.abs(d.year - year) < .5 && d.year > medianYear) {
