@@ -1,9 +1,9 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", () => {
     d3.selectAll('.you-draw-it').each(function() {
         const sel = d3.select(this);
         const key = this.dataset.key;
         const indexedData = window.ydi_data[key];
-        const data = Object.keys(indexedData).map(function (key) {
+        const data = Object.keys(indexedData).map(key => {
             return {
                 year: Number(key),
                 value: indexedData[key]
@@ -29,16 +29,10 @@ document.addEventListener("DOMContentLoaded", function() {
             const functions = arguments;
 
             //convert all string arguments into field accessors
-            let i = 0, l = functions.length;
-            while (i < l) {
+            for (let i = 0; i < functions.length; i++) {
                 if (typeof(functions[i]) === 'string' || typeof(functions[i]) === 'number') {
-                    functions[i] = (function (str) {
-                        return function (d) {
-                            return d[str]
-                        }
-                    })(functions[i])
+                    functions[i] = (str => function (d) { return d[str]; })(functions[i]);
                 }
-                i++
             }
 
             //return composition of functions
@@ -65,9 +59,9 @@ document.addEventListener("DOMContentLoaded", function() {
             ];
         };
 
-        function clamp(a, b, c) {
+        const clamp = function (a, b, c) {
             return Math.max(a, Math.min(b, c))
-        }
+        };
 
         sel.html('');
         const margin = {top: 20, right: 50, bottom: 20, left: 50};
