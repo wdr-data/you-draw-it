@@ -1,3 +1,5 @@
+//import * as d3 from 'd3';
+
 document.addEventListener("DOMContentLoaded", function() {
     d3.selectAll('.you-draw-it').each(function() {
         const sel = d3.select(this);
@@ -18,6 +20,8 @@ document.addEventListener("DOMContentLoaded", function() {
         const minYear = data[0].year;
         const maxYear = data[data.length - 1].year;
         const medianYear = 2012;
+        const minY = d3.min(data, d => d.value);
+        const maxY = d3.max(data, d => d.value);
 
         const ƒ = function () {
             const functions = arguments;
@@ -76,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function() {
         c.x = d3.scaleLinear().range([0, c.width]);
         c.x.domain([minYear, maxYear]);
         c.y = d3.scaleLinear().range([c.height, 0]);
-        c.y.domain([0, indexedData[medianYear] * 2]);
+        c.y.domain([Math.min(0, minY), Math.max(indexedData[medianYear] * 2, maxY)]);
 
         c.svg = sel.append('svg')
             .attr("width", width)
