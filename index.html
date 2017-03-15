@@ -53,7 +53,7 @@
                 {{ question.result|md }}
                 <script>
                     window.ydi_data = window.ydi_data || {};
-                    window.ydi_data['{{ question.key }}'] = {% autoescape false %}{{ question.data|json_encode }}{% endautoescape %};
+                    window.ydi_data['{{ question.key }}'] = {% autoescape false %}{{ question|json_encode }}{% endautoescape %};
                 </script>
             </div>
             {% endfor %}

@@ -2,7 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
     d3.selectAll('.you-draw-it').each(function() {
         const sel = d3.select(this);
         const key = this.dataset.key;
-        const indexedData = window.ydi_data[key];
+        const question = window.ydi_data[key];
+        const indexedData = question.data;
         const data = Object.keys(indexedData).map(key => {
             return {
                 year: Number(key),
@@ -52,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const makeLabel = function(pos, addClass) {
             const x = c.x(pos);
             const y = c.y(indexedData[pos]);
-            const text = String(indexedData[pos]).replace('.', ',');
+            const text = String(indexedData[pos]).replace('.', ',') + (question.unit ? ' ' + question.unit : '');
 
             const label = c.labels.append('div')
                 .attr('class', 'data-label ' + addClass)
