@@ -1,6 +1,8 @@
 heading: Um wie viele Schüler muss sich im Durchschnitt ein Lehrer kümmern? Die Kurve ...
 result: >
        ... **geht seit 2012 nach unten.** Das tat sie aber auch schon in den Jahren davor. In NRW-Schulen sind immer mehr Lehrer für immer weniger Schüler verantwortlich. Es gibt aber Unterschiede zwischen den einzelnen Schulformen.
+       
+       [Schulpolitik: Mehr Lehrer, weniger Schüler](http://www1.wdr.de/nachrichten/landespolitik/nachrichten/landespolitik/landtagswahl/wss-schule-100.html)
         
 data:
   2005: 16.61
@@ -14,3 +16,5 @@ data:
   2013: 14.16
   2014: 14.09
   2015: 13.90
+accessability: http://www1.wdr.de/nachrichten/landespolitik/nachrichten/landespolitik/landtagswahl/wss-schule-barrierefrei-108.html
+unit: 

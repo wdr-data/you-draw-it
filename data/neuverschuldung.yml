@@ -1,6 +1,8 @@
 heading: Die Nettoneuverschuldung in NRW ...
 result: >
         ... **stand im Jahr 2016 bei 0.** Das Land hat in diesem Jahr einen Überschuss von etwas mehr als 200 Millionen Euro verzeichnet, der in die Tilgung bisheriger Schulden geflossen ist.
+        
+        [NRW erstmals seit 43 Jahren ohne neue Schulden](http://www1.wdr.de/nachrichten/landespolitik/landeshaushalt-plus-100.html)
  
 data:
   2000: 3525.5
@@ -20,3 +22,5 @@ data:
   2014: 2297.1
   2015: 1811.4
   2016: 0
+accessability: http://www1.wdr.de/nachrichten/landespolitik/nachrichten/landespolitik/landtagswahl/wss-schulden-barrierefrei-100.html
+unit: Mio. €

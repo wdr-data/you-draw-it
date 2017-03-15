@@ -1,6 +1,8 @@
 heading: Das Wirtschaftswachstum ...
 result: >
-        ... **zeigt sich in den letzten fünf Jahren wechselhaft.** 2012 und 2013 stieg das Bruttoinlandsprodukt nur minimal. Dann folgte ein Anstieg von 1,75 Prozent, 2015 musste NRW ein Nullwachstum hinnehmen. Interessant in diesem Zusammenhang: Der Vergleich mit dem Wachstum in anderen Bundesländern. [Kein Wachstum im Jahr 2015 (barrierefrei)](http://www1.wdr.de/nachrichten/landespolitik/nachrichten/landespolitik/landtagswahl/wss-wirtschaftswachstum-barrierefrei-104.html)
+        ... **zeigt sich in den letzten fünf Jahren wechselhaft.** 2012 und 2013 stieg das Bruttoinlandsprodukt nur minimal. Dann folgte ein Anstieg von 1,75 Prozent, 2015 musste NRW ein Nullwachstum hinnehmen. Interessant in diesem Zusammenhang: Der Vergleich mit dem Wachstum in anderen Bundesländern.
+        
+        [Nicht immer im Bundesschnitt: Das NRW-Wirtschaftswachstum im Ländervergleich](http://www1.wdr.de/nachrichten/landespolitik/nachrichten/landespolitik/landtagswahl/wss-wirtschaftswachstum-100.html)
         
 data:
   2005: 0.511257
@@ -14,3 +16,5 @@ data:
   2013: 0.220275
   2014: 1.751689
   2015: -0.008308
+accessability: http://www1.wdr.de/nachrichten/landespolitik/nachrichten/landespolitik/landtagswahl/wss-wirtschaftswachstum-barrierefrei-104.html
+unit: %

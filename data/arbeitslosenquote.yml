@@ -2,6 +2,8 @@ heading: Die Arbeitslosenquote in NRW ...
 result: >
         ... **geht seit 2005 kontiniuerlich zurück**. Lediglich im Krisenjahr 2009 gab es einen kleinen Ausschlag nach oben.
         
+        [Arbeitsmarkt: Regionale Unterschiede](http://www1.wdr.de/nachrichten/landespolitik/nachrichten/landespolitik/landtagswahl/wss-arbeitsmarkt-100.html)
+        
 data:
   2005: 12.0
   2006: 11.4
@@ -15,3 +17,5 @@ data:
   2014: 8.2
   2015: 8.0
   2016: 7.7
+accessability: http://www1.wdr.de/nachrichten/landespolitik/nachrichten/landespolitik/landtagswahl/wss-arbeitsmarkt-barrierefrei-102.html
+unit: %
