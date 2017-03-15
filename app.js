@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const medianYear = periods[periods.length-1].year;
         const minY = d3.min(data, d => d.value);
         const maxY = d3.max(data, d => d.value);
+        const segmentBorders = [minYear].concat(periods.map(d => d.year)).concat([maxYear]);
 
         const ƒ = function () {
             const functions = arguments;
@@ -135,7 +136,10 @@ document.addEventListener("DOMContentLoaded", () => {
               .tickValues(c.x.ticks(maxYear-minYear))
               .tickFormat("")
               .tickSize(c.height)
-        );
+        )
+            .selectAll('line')
+            .attr('class', (d, i) => segmentBorders.indexOf(d) !== -1 ? 'highlight' : '');
+
         c.grid.append('g').attr('class', 'vertical').call(
             d3.axisLeft(c.y)
               .tickValues(c.y.ticks(6))
