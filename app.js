@@ -114,6 +114,19 @@ document.addEventListener("DOMContentLoaded", () => {
             .attr("width", c.width)
             .attr("height", c.height);
 
+        // gradients
+        c.defs = c.svg.append('defs');
+        ['black', 'red'].forEach(color => {
+            const gradient = c.defs.append('linearGradient')
+                .attr('id', 'gradient-'+color)
+                .attr('x1', '0%')
+                .attr('y1', '0%')
+                .attr('x2', '0%')
+                .attr('y2', '100%');
+            gradient.append('stop').attr('offset', '0%').attr('class', 'start');
+            gradient.append('stop').attr('offset', '100%').attr('class', 'end');
+        });
+
         // invisible rect for dragging to work
         c.svg.append('rect')
             .attr('width', c.width)
