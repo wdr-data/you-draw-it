@@ -127,6 +127,22 @@ document.addEventListener("DOMContentLoaded", () => {
             gradient.append('stop').attr('offset', '100%').attr('class', 'end');
         });
 
+        // make background grid
+        c.grid = c.svg.append('g')
+            .attr('class', 'grid');
+        c.grid.append('g').attr('class', 'horizontal').call(
+            d3.axisBottom(c.x)
+              .tickValues(c.x.ticks(maxYear-minYear))
+              .tickFormat("")
+              .tickSize(c.height)
+        );
+        c.grid.append('g').attr('class', 'vertical').call(
+            d3.axisLeft(c.y)
+              .tickValues(c.y.ticks(6))
+              .tickFormat("")
+              .tickSize(-c.width)
+        );
+
         // invisible rect for dragging to work
         c.svg.append('rect')
             .attr('width', c.width)
