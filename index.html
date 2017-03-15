@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="de" prefix="og: http://ogp.me/ns#">
 <head>
-    <title>data.wdr.de</title>
+    <title>Was schaetzen Sie?</title>
     <meta property="og:title" content="WDR - Informationen und Nachrichten vom Westdeutschen Rundfunk - WDR" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -59,7 +59,10 @@
 
 <section id="content">
     <div class="container">
-        <h1>You draw it</h1>
+        <h1>Politik in Zahlen: Was schätzen Sie?</h1>
+        <p>Wie hat sich die Nordrhein-Westfalen in der Amtszeit von Hannelore Kraft entwickelt? 
+        Wir zeigen Ihnen Beispiele aus verschiedenen Politikbereichen. Zeichnen Sie ihre Einschätzung in die Grafik ein. 
+        Ein Klick auf den Button unter der Grafik verrät, wie nah Sie dran waren.</p> 
 
         <div class="questions">
             {% for question in data %}
@@ -76,6 +79,10 @@
         </div>
     </div>
 </section>
+
+<hr>
+  <h3>Quellen:</h3>
+  <p></p>
 
 <script src="/bower_components/d3/d3.min.js"></script>
 <script src="/app.js"></script>
