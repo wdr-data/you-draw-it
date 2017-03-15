@@ -44,19 +44,46 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         const drawAxis = function (c) {
-            c.svg.append("g")
-                .attr("class", "x axis")
+            c.axis.attr("class", "x axis")
                 .attr("transform", "translate(0," + c.height + ")")
                 .call(c.xAxis);
         };
 
-        const drawChart = function (definedFn, addClass) {
+        const makeLabel = function(pos, addClass) {
+            const x = c.x(pos);
+            const y = c.y(indexedData[pos]);
+            const text = String(indexedData[pos]).replace('.', ',');
+
+            const label = c.labels.append('div')
+                .attr('class', 'data-label ' + addClass)
+                .style('left', x + 'px')
+                .style('top', y + 'px');
+            label.append('span')
+                .text(text);
+
+            return [
+                c.dots.append('circle')
+                    .attr('r', 4.5)
+                    .attr('cx', x)
+                    .attr('cy', y)
+                    .attr('class', addClass),
+                label
+            ];
+        };
+
+        const drawChart = function (lower, upper, addClass) {
+            const definedFn = (d, i) => d.year >= lower && d.year <= upper;
             const area = d3.area().x(ƒ('year', c.x)).y0(ƒ('value', c.y)).y1(c.height).defined(definedFn);
             const line = d3.area().x(ƒ('year', c.x)).y(ƒ('value', c.y)).defined(definedFn);
+
+            if(lower == 0) {
+                makeLabel(minYear, addClass);
+            }
+
             return [
-                c.svg.append('path').attr('d', area(data)).attr('class', 'area ' + addClass),
-                c.svg.append('path').attr('d', line(data)).attr('class', 'line ' + addClass)
-            ];
+                c.charts.append('path').attr('d', area(data)).attr('class', 'area ' + addClass),
+                c.charts.append('path').attr('d', line(data)).attr('class', 'line ' + addClass),
+            ].concat(makeLabel(upper, addClass));
         };
 
         const clamp = function (a, b, c) {
@@ -92,6 +119,16 @@ document.addEventListener("DOMContentLoaded", () => {
             .attr('height', c.height)
             .attr('opacity', 0);
 
+        c.labels = sel.append('div')
+            .attr('class', 'labels')
+            .style('left', margin.left + 'px')
+            .style('top', margin.top + 'px')
+            .style('width', c.width + 'px')
+            .style('height', c.height + 'px');
+        c.axis = c.svg.append('g');
+        c.charts = c.svg.append('g');
+        c.dots = c.svg.append('g').attr('class', 'dots');
+
         // configure axes
         c.xAxis = d3.axisBottom().scale(c.x);
         c.xAxis.ticks(maxYear - minYear).tickFormat(ƒ());
@@ -101,10 +138,16 @@ document.addEventListener("DOMContentLoaded", () => {
         periods.forEach((entry, key) => {
             const lower = key > 0 ? periods[key-1].year : 0;
             const upper = entry.year;
-            drawChart((d, i) => d.year >= lower && d.year <= upper, entry.class);
+            drawChart(lower, upper, entry.class);
         });
-        const resultCharts = drawChart((d, i) => d.year >= medianYear, 'red').map(e => e.attr('opacity', 0));
+        const resultCharts = drawChart(medianYear, maxYear, 'red').map(e => e.style('opacity', 0));
 
+        // make data highlight points
+
+
+        /**
+         * Interactive user selection part
+         */
         const userSel = c.svg.append('path').attr('class', 'your-line');
         const userLine = d3.area().x(ƒ('year', c.x)).y(ƒ('value', c.y));
 
@@ -133,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (!completed && d3.mean(yourData, ƒ('defined')) == 1) {
                     completed = true;
-                    resultCharts.map(e => e.attr('opacity', 1));
+                    resultCharts.map(e => e.style('opacity', 1));
                 }
             });
 

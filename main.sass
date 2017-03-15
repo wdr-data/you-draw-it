@@ -15,6 +15,7 @@ h2
 
 .you-draw-it
   margin: 30px 0
+  position: relative
 
   .axis
     opacity: .5
@@ -31,6 +32,57 @@ h2
 
   .area
     fill: #eee
+
+  .dots
+    .black
+      fill: black
+
+    .red
+      fill: red
+
+  .labels
+    position: absolute
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+    pointer-events: none
+
+    .data-label
+      position: absolute
+
+      span
+        position: relative
+        margin-top: -43px
+        left: -50%
+        padding: 5px 15px
+        color: white
+        display: block
+        text-align: center
+        line-height: 16px
+
+      &:after
+        border: solid transparent
+        content: " "
+        height: 0
+        width: 0
+        position: absolute
+        pointer-events: none
+        border-color: rgba(136, 183, 213, 0)
+        border-width: 12px 6px
+        margin-left: -6px
+
+      &.black
+        span
+          background-color: black
+        &:after
+          border-top-color: black
+
+      &.red
+        span
+          background-color: red
+        &:after
+          border-top-color: red
 
   .your-line
     stroke: #f0f
