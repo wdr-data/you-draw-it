@@ -262,7 +262,8 @@ document.addEventListener("DOMContentLoaded", () => {
             dragArea.attr('class', '');
             setTimeout(() => {
                 resultLabel.map(e => e.style('opacity', 1));
-                resultSection.select('.text').style('visibility', 'visible');
+                resultSection.select('button').style('display', 'none');
+                resultSection.select('.text').style('display', 'block');
             }, 700);
         };
         resultSection.select('button').on('click', showResultChart);
