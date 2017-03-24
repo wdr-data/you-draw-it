@@ -163,8 +163,10 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         // invisible rect for dragging to work
-        c.svg.append('rect')
-            .attr('width', c.width)
+        const dragArea = c.svg.append('rect')
+            .attr('class', 'draggable')
+            .attr('x', c.x(medianYear))
+            .attr('width', c.x(maxYear)-c.x(medianYear))
             .attr('height', c.height)
             .attr('opacity', 0);
 
@@ -257,6 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const showResultChart = function() {
             resultShown = true;
             resultClip.style('width', c.x(maxYear) + 'px');
+            dragArea.attr('class', '');
             setTimeout(() => {
                 resultLabel.map(e => e.style('opacity', 1));
                 resultSection.select('.text').style('visibility', 'visible');
