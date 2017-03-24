@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ];
         const medianYear = periods[periods.length-2].year;
         const minY = d3.min(data, d => d.value);
-        const maxY = d3.max(data, d => d.value) * 1.3; // add 30% for segment titles
+        const maxY = d3.max(data, d => d.value);
         const segmentBorders = [minYear].concat(periods.map(d => d.year));
 
         const ƒ = function () {
@@ -106,10 +106,12 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         // configure scales
+        const graphMinY = Math.min(minY, 0);
+        const graphMaxY = maxY + (maxY-graphMinY) * 0.4; // add 40% for segment titles
         c.x = d3.scaleLinear().range([0, c.width]);
         c.x.domain([minYear, maxYear]);
         c.y = d3.scaleLinear().range([c.height, 0]);
-        c.y.domain([Math.min(0, minY), Math.max(indexedData[medianYear] * 2, maxY)]);
+        c.y.domain([graphMinY, Math.max(indexedData[medianYear] * 2, graphMaxY)]);
 
         c.svg = sel.append('svg')
             .attr("width", width)
