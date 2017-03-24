@@ -41,16 +41,18 @@
 <section id="content">
     <div class="container">
         <h1>Was schätzen Sie: Wie hat sich NRW unter Kraft verändert?</h1>
-        <p>Zeichnen Sie ihre Einschätzung in die Grafik ein. Ein Klick auf den Button unter der Grafik verrät, wie nah Sie dran waren.</p>
+        <p>Am 14. Mai wird in Nordrhein-Westfalen gewählt. Wie hat sich unser Bundesland in den fünf Jahren Regierung von SPD und Grünen unter Ministerpräsidentin Hannelore Kraft verändert?</p>
+        <p><b>Zeichnen Sie ihre Einschätzung. Ein Klick auf den Button unter der Grafik verrät, ob Sie richtig lagen.</b></p>
 
         <div class="questions">
             {% for question in data %}
             <div class="question">
                 <h2>{{ question.heading|mdi }}</h2>
+                <h3>{{ question.subheading|mdi }}</h3>
                 <div class="you-draw-it {{ question.key }}" data-key="{{ question.key }}"></div>
                 <div class="result {{ question.key }}">
-                    <button class="showAction">Stimmt's ?</button>
-                    <div class="tooltipcontainer"><span class="tooltiptext">Klicken Sie hier, um zu sehen, ob Ihre Schätzung stimmt.</span></div>
+                    <button class="showAction">Klick: Wie war's tatsächlich?</button>
+                    <div class="tooltipcontainer"><span class="tooltiptext">Zeichnen Sie ihre Einschätzung. Der Klick verrät, ob sie stimmt.</span></div>
                     <span class="text">{{ question.result|md }}</span>
                 </div>
                 <script>
