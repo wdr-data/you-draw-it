@@ -19,13 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const minYear = data[0].year;
         const maxYear = data[data.length - 1].year;
         const periods = [
-            { year: 2010, class: 'black' },
-            { year: 2012, class: 'red' }
+            { year: 2010, class: 'black', title: "Amtszeit\nJürgen Rüttgers" },
+            { year: 2012, class: 'red', title: "I. Amtszeit\nHannelore Kraft" },
+            { year: Math.min(2017, maxYear), class: 'red', title: "II. Amtszeit\nHannelore Kraft" }
         ];
         const medianYear = periods[periods.length-1].year;
         const minY = d3.min(data, d => d.value);
         const maxY = d3.max(data, d => d.value);
-        const segmentBorders = [minYear].concat(periods.map(d => d.year)).concat([maxYear]);
+        const segmentBorders = [minYear].concat(periods.map(d => d.year));
 
         const ƒ = function () {
             const functions = arguments;
@@ -78,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const area = d3.area().x(ƒ('year', c.x)).y0(ƒ('value', c.y)).y1(c.height).defined(definedFn);
             const line = d3.area().x(ƒ('year', c.x)).y(ƒ('value', c.y)).defined(definedFn);
 
-            if(lower == 0) {
+            if(lower == minYear) {
                 makeLabel(minYear, addClass);
             }
 
@@ -147,6 +148,14 @@ document.addEventListener("DOMContentLoaded", () => {
               .tickSize(-c.width)
         );
 
+        const applyMargin = function(sel) {
+            sel.style('left', margin.left + 'px')
+                .style('top', margin.top + 'px')
+                .style('width', c.width + 'px')
+                .style('height', c.height + 'px');
+
+        };
+
         // invisible rect for dragging to work
         c.svg.append('rect')
             .attr('width', c.width)
@@ -155,10 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         c.labels = sel.append('div')
             .attr('class', 'labels')
-            .style('left', margin.left + 'px')
-            .style('top', margin.top + 'px')
-            .style('width', c.width + 'px')
-            .style('height', c.height + 'px');
+            .call(applyMargin);
         c.axis = c.svg.append('g');
         c.charts = c.svg.append('g');
         c.dots = c.svg.append('g').attr('class', 'dots');
@@ -168,16 +174,24 @@ document.addEventListener("DOMContentLoaded", () => {
         c.xAxis.ticks(maxYear - minYear).tickFormat(ƒ());
         drawAxis(c);
 
+        c.titles = sel.append('div')
+            .attr('class', 'titles')
+            .call(applyMargin);
+
         // make chart
-        periods.forEach((entry, key) => {
-            const lower = key > 0 ? periods[key-1].year : 0;
+        const charts = periods.map((entry, key) => {
+            const lower = key > 0 ? periods[key-1].year : minYear;
             const upper = entry.year;
-            drawChart(lower, upper, entry.class);
+
+            // segment title
+            c.titles.append('span')
+                .style('left', c.x(lower) + 'px')
+                .style('width', c.x(upper)-c.x(lower) + 'px')
+                .text(entry.title);
+
+            return drawChart(lower, upper, entry.class);
         });
-        const resultCharts = drawChart(medianYear, maxYear, 'red').map(e => e.style('opacity', 0));
-
-        // make data highlight points
-
+        const resultCharts = charts[charts.length-1].map(e => e.style('opacity', 0));
 
         /**
          * Interactive user selection part
