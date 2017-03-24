@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ];
         const medianYear = periods[periods.length-1].year;
         const minY = d3.min(data, d => d.value);
-        const maxY = d3.max(data, d => d.value);
+        const maxY = d3.max(data, d => d.value) * 1.3; // add 30% for segment titles
         const segmentBorders = [minYear].concat(periods.map(d => d.year));
 
         const ƒ = function () {
