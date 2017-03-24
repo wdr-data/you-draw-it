@@ -83,9 +83,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 makeLabel(minYear, addClass);
             }
 
+            const group = c.charts.append('g');
+            group.append('path').attr('d', area(data)).attr('class', 'area ' + addClass);
+            group.append('path').attr('d', line(data)).attr('class', 'line ' + addClass);
+
             return [
-                c.charts.append('path').attr('d', area(data)).attr('class', 'area ' + addClass),
-                c.charts.append('path').attr('d', line(data)).attr('class', 'line ' + addClass),
+                group,
             ].concat(makeLabel(upper, addClass));
         };
 
@@ -117,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .attr("height", c.height);
 
         // gradients
-        c.defs = c.svg.append('defs');
+        c.defs = d3.select(c.svg.node().parentNode).append('defs');
         ['black', 'red'].forEach(color => {
             const gradient = c.defs.append('linearGradient')
                 .attr('id', 'gradient-'+color)
@@ -192,7 +195,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
             return drawChart(lower, upper, entry.class);
         });
-        const resultCharts = charts[charts.length-1].map(e => e.style('opacity', 0));
+        const resultChart = charts[charts.length-1][0];
+        const resultClip = c.charts.append('clipPath')
+            .attr('id', `result-clip-${key}`)
+            .append('rect')
+            .style('width', c.x(medianYear) + 'px')
+            .attr('height', c.height);
+        const resultLabel = charts[charts.length-1].slice(1, 3);
+        resultChart.attr('clip-path', `url(#result-clip-${key}`)
+            .append('rect')
+            .attr('width', c.width)
+            .attr('height', c.height)
+            .attr('fill', 'none');
+        resultLabel.map(e => e.style('opacity', 0));
 
         /**
          * Interactive user selection part
@@ -238,8 +253,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const showResultChart = function() {
             resultShown = true;
-            resultCharts.map(e => e.style('opacity', 1));
-            resultSection.select('.text').style('visibility', 'visible');
+            resultClip.style('width', c.x(maxYear) + 'px');
+            setTimeout(() => {
+                resultLabel.map(e => e.style('opacity', 1));
+                resultSection.select('.text').style('visibility', 'visible');
+            }, 700);
         };
         resultSection.select('button').on('click', showResultChart);
     });

@@ -18,6 +18,7 @@ $black: black
 $red: red
 
 $gradient-opacity: 0.3
+$clippath-animation-duration: 0.7s
 
 #content
   > .container
@@ -45,6 +46,10 @@ $gradient-opacity: 0.3
       stop-color: $red
       stop-opacity: 0
 
+  clipPath
+    rect
+      transition: width $clippath-animation-duration
+
   .axis
     opacity: .5
 
@@ -65,6 +70,9 @@ $gradient-opacity: 0.3
       fill: url(#gradient-red)
 
   .dots
+    circle
+      transition: opacity 0.3s
+
     .black
       fill: $black
 
@@ -77,6 +85,7 @@ $gradient-opacity: 0.3
 
     .data-label
       position: absolute
+      transition: opacity 0.3s
 
       span
         position: relative
