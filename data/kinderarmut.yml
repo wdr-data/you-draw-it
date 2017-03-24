@@ -5,16 +5,15 @@ result: >
         [In Gelsenkirchen lebt jedes dritte Kind von Hartz IV](https://datawrapper.dwcdn.net/qPKJK/3/)
 
 data:
-  2005: 19.02
-  2006: 20.55
-  2007: 20.73
-  2008: 19.72
-  2009: 20.20
-  2010: 19.13
-  2011: 19.43
-  2012: 20.17
-  2013: 21.15
-  2014: 22.03
-  2015: 22.60
+  2007:	17.1
+  2008:	16.2
+  2009:	16.6
+  2010:	15.7
+  2011:	15.8
+  2012:	16.5
+  2013:	17.2
+  2014:	17.8
+  2015:	18.1
+
 accessability: http://www1.wdr.de/nachrichten/landespolitik/nachrichten/landespolitik/landtagswahl/wss-kinderarmut-barrierefrei-104.html
 unit:
