@@ -108,11 +108,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // configure scales
         const graphMinY = Math.min(minY, 0);
-        const graphMaxY = maxY + (maxY-graphMinY) * 0.4; // add 40% for segment titles
+        const graphMaxY = Math.max(indexedData[medianYear] * 2, maxY + (maxY-graphMinY) * 0.4); // add 40% for segment titles
         c.x = d3.scaleLinear().range([0, c.width]);
         c.x.domain([minYear, maxYear]);
         c.y = d3.scaleLinear().range([c.height, 0]);
-        c.y.domain([graphMinY, Math.max(indexedData[medianYear] * 2, graphMaxY)]);
+        c.y.domain([graphMinY, graphMaxY]);
 
         c.svg = sel.append('svg')
             .attr("width", width)
@@ -170,6 +170,12 @@ document.addEventListener("DOMContentLoaded", () => {
             .attr('height', c.height)
             .attr('opacity', 0);
 
+        setTimeout(() => {
+            const clientRect = c.svg.node().getBoundingClientRect();
+            c.top = clientRect.top + window.scrollY;
+            c.bottom = clientRect.bottom + window.scrollY;
+        }, 1000);
+
         c.labels = sel.append('div')
             .attr('class', 'labels')
             .call(applyMargin);
@@ -214,6 +220,39 @@ document.addEventListener("DOMContentLoaded", () => {
             .attr('fill', 'none');
         resultLabel.map(e => e.style('opacity', 0));
 
+        const randStart = indexedData[medianYear];
+        const randMin = (randStart - graphMinY) * 0.3 + graphMinY;
+        const randMax = (graphMaxY - randStart) * 0.5 + randStart;
+        const randDelta = randMax-randMin;
+        const teasingClip = c.charts.append('clipPath')
+            .attr('class', 'teasing-clip')
+            .attr('id', `teasing-clip-${key}`)
+            .append('rect')
+            .attr('x', c.x(medianYear))
+            .attr('height', c.height);
+        const teasingGraph = c.charts.append('path')
+            .attr('class', 'teasing-line')
+            .attr('clip-path', `url(#teasing-clip-${key})`);
+        const teasingLine = d3.line().x(ƒ('year', c.x)).y(d => {
+            if(d.year == medianYear) {
+                return c.y(randStart);
+            }
+            return c.y(Math.random() * randDelta + randMin);
+        }).defined(d => d.year >= medianYear);
+        const animationDuration = getComputedStyle(teasingGraph.node()).animationDuration.replace('s', '') * 1000;
+
+        let firstDraw = false;
+        // make random teasing line
+        const teasingLineLoop = function() {
+            // make random chart
+            const winBottom = document.body.scrollTop + window.innerHeight;
+            if(c.bottom > document.body.scrollTop && c.top < winBottom && !firstDraw) {
+                teasingGraph.attr('d', teasingLine(data));
+            }
+        };
+        teasingLineLoop();
+        setInterval(teasingLineLoop, animationDuration);
+
         /**
          * Interactive user selection part
          */
@@ -234,6 +273,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 if(resultShown) {
                     return;
                 }
+
+                firstDraw = true;
+                c.svg.attr('class', 'drawn');
 
                 const pos = d3.mouse(c.svg.node());
                 const year = clamp(medianYear, maxYear, c.x.invert(pos[0]));
