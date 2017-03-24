@@ -167,6 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .call(applyMargin);
         c.axis = c.svg.append('g');
         c.charts = c.svg.append('g');
+        const userSel = c.svg.append('path').attr('class', 'your-line');
         c.dots = c.svg.append('g').attr('class', 'dots');
 
         // configure axes
@@ -196,8 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
         /**
          * Interactive user selection part
          */
-        const userSel = c.svg.append('path').attr('class', 'your-line');
-        const userLine = d3.area().x(ƒ('year', c.x)).y(ƒ('value', c.y));
+        const userLine = d3.line().x(ƒ('year', c.x)).y(ƒ('value', c.y));
 
         let yourData = data.map(d => ({year: d.year, value: d.value, defined: 0}))
             .filter(d => {
