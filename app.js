@@ -55,7 +55,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const makeLabel = function(pos, addClass) {
             const x = c.x(pos);
             const y = c.y(indexedData[pos]);
-            const text = String(indexedData[pos]).replace('.', ',') + (question.unit ? ' ' + question.unit : '');
+            const data = question.precision ? Number(indexedData[pos]).toFixed(question.precision) : indexedData[pos];
+            const text = String(data).replace('.', ',') + (question.unit ? ' ' + question.unit : '');
 
             const label = c.labels.append('div')
                 .attr('class', 'data-label ' + addClass)
