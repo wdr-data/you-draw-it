@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .style('width', c.x(medianYear) + 'px')
             .attr('height', c.height);
         const resultLabel = charts[charts.length-1].slice(1, 3);
-        resultChart.attr('clip-path', `url(#result-clip-${key}`)
+        resultChart.attr('clip-path', `url(#result-clip-${key})`)
             .append('rect')
             .attr('width', c.width)
             .attr('height', c.height)
