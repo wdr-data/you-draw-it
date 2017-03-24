@@ -5,17 +5,18 @@ result: >
         [NRW erstmals seit 43 Jahren ohne neue Schulden](http://www1.wdr.de/nachrichten/landespolitik/landeshaushalt-plus-100.html)
 
 data:
-  2005: 6656.4
-  2006: 3240.0
-  2007: 1864.1
-  2008: 1115.2
-  2009: 5643.1
-  2010: 4922.4
-  2011: 3030.1
-  2012: 3707.9
-  2013: 3173.5
-  2014: 2297.1
-  2015: 1811.4
+  2005: 6.6564
+  2006: 3.2400
+  2007: 1.8641
+  2008: 1.1152
+  2009: 5.6431
+  2010: 4.9224
+  2011: 3.0301
+  2012: 3.7079
+  2013: 3.1735
+  2014: 2.2971
+  2015: 1.8114
   2016: 0
 accessability: http://www1.wdr.de/nachrichten/landespolitik/nachrichten/landespolitik/landtagswahl/wss-schulden-barrierefrei-100.html
-unit: Mio. €
+unit: Mia. €
+precision: 2

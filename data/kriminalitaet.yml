@@ -6,17 +6,18 @@ result: >
         [Kriminalstatistik: So groß sind die Unterschiede in Deutschland](https://datawrapper.dwcdn.net/Y53UO/2/)
 
 data:
-  2005: 1503451
-  2006: 1491897
-  2007: 1495333
-  2008: 1453203
-  2009: 1458438
-  2010: 1442801
-  2011: 1511469
-  2012: 1518363
-  2013: 1484943
-  2014: 1501125
-  2015: 1517448
-  2016: 1469426
+  2005: 1.503451
+  2006: 1.491897
+  2007: 1.495333
+  2008: 1.453203
+  2009: 1.458438
+  2010: 1.442801
+  2011: 1.511469
+  2012: 1.518363
+  2013: 1.484943
+  2014: 1.501125
+  2015: 1.517448
+  2016: 1.469426
 accessability: http://www1.wdr.de/nachrichten/landespolitik/nachrichten/landespolitik/landtagswahl/wss-arbeitsmarkt-barrierefrei-102.html
 unit: Mio.
+precision: 2
