@@ -205,10 +205,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 return d.year >= medianYear
             });
 
+        const resultSection = d3.select('.result.'+key);
         let completed = false;
+        let resultShown = false;
 
         const drag = d3.drag()
             .on('drag', () => {
+                if(resultShown) {
+                    return;
+                }
+
                 const pos = d3.mouse(c.svg.node());
                 const year = clamp(medianYear, maxYear, c.x.invert(pos[0]));
                 const value = clamp(c.y.domain()[0], c.y.domain()[1], c.y.invert(pos[1]));
@@ -224,10 +230,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (!completed && d3.mean(yourData, ƒ('defined')) == 1) {
                     completed = true;
-                    resultCharts.map(e => e.style('opacity', 1));
+                    resultSection.style('visibility', 'visible');
                 }
             });
 
         c.svg.call(drag);
+
+        const showResultChart = function() {
+            resultShown = true;
+            resultCharts.map(e => e.style('opacity', 1));
+            resultSection.select('.text').style('visibility', 'visible');
+        };
+        resultSection.select('button').on('click', showResultChart);
     });
 });
