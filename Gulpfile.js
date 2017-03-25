@@ -37,7 +37,7 @@ gulp.task('templates', function() {
             setup: function(swig) {
                 const md = function(input) {
                     return marked(input, {
-                        breaks: true
+                        sanitize: true
                     });
                 };
                 md.safe = true;
