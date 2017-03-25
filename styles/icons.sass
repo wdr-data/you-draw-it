@@ -1,0 +1,32 @@
+@mixin icon-size($size)
+  line-height: $size
+  margin-left: $size + 4px
+
+  &:before
+    font-size: $size
+    height: $size
+    width: $size
+    margin-left: -($size + 4px)
+
+.icon
+  @include icon-size(36px)
+
+  &:before
+    color: #fdfdfc
+    font-family: "WDR Iconfont", helvetica, arial, sans-serif
+    text-decoration: none !important
+    position: absolute
+    font-weight: 400
+    display: inline-block
+
+  &.weather:before
+    content: "w"
+
+  &.traffic:before
+    content: "v"
+
+  &.search:before
+    content: "s"
+
+  &.hamburger:before
+    content: "h"

@@ -1,0 +1,211 @@
+#header
+  background: $wdr-blue
+  overflow: hidden
+  padding-top: 25px
+  color: white
+  font-family: "WDRSlab", serif
+
+  ul
+    margin: 0
+    padding: 0
+    list-style: none
+
+  *::placeholder
+    font-family: "WDRSlab", serif
+
+  .logo
+    display: inline-block
+
+  .servicenavi
+    display: inline-block
+
+    li
+      display: inline-block
+      border-radius: 2px
+
+      &:hover
+        background: white
+        color: $wdr-blue
+
+        .icon:before
+          color: $wdr-blue
+
+      a
+        padding: 5px
+        color: inherit
+        text-decoration: none
+        margin-right: 10px
+        display: inline-block
+
+  .searchBox
+    display: inline-block
+    margin-left: 20px
+
+    form
+      display: inline-block
+      border-radius: 3px
+      background: white
+      color: black
+      padding: 10px
+      font-size: 16px
+
+      input
+        border: none
+        outline: none
+        width: 230px
+
+      button
+        border: none
+        background: none
+        padding: 0
+        cursor: pointer
+
+        &:before
+          color: $wdr-blue
+          margin-top: -24px
+          margin-left: -30px
+          font-size: 30px
+
+  .mobileButtons
+    display: none
+
+    .mobileButton
+      display: inline-block
+      width: 0
+      overflow: hidden
+      height: 48px
+      cursor: pointer
+      @include icon-size(26px)
+      margin-left: 48px
+
+      &:before
+        margin-top: -2px
+        margin-left: -44px
+        background: white
+        color: $wdr-blue
+        padding: 8px
+        border-radius: 3px
+        border: 1px solid transparent
+
+  #searchState:checked ~ .mobileButtons
+    .searchToggle:before
+      border: 1px solid white
+      background: transparent
+      color: white
+
+  #naviState:checked ~ .mobileButtons
+    .naviToggle:before
+      border: 1px solid white
+      background: transparent
+      color: white
+
+
+  .naviCont
+    color: white
+    font-size: 20px
+    margin-top: 35px
+
+    a
+      color: inherit
+      text-decoration: none
+      padding: 6px 10px
+      line-height: 1.6
+      display: inline-block
+      border-radius: 3px 3px 0 0
+
+      &:hover
+        background: white
+        color: $wdr-blue
+
+    li
+      display: inline-block
+
+    .subnavi
+      display: inline-block
+
+    .masternavi
+      float: right
+      font-weight: 800
+
+@media (max-width: $bp-md)
+  #header
+    padding-top: 15px
+
+    .searchBox
+      form
+        input
+          width: 170px
+
+    .naviCont
+      margin-top: 15px
+      font-size: 18px
+
+      .subnavi, .masternavi
+        display: block
+        margin-left: -10px
+        margin-right: -10px
+
+      .subnavi
+        a
+          border-radius: 3px
+
+      .masternavi
+        float: none
+
+@media (max-width: $bp-sm)
+  #header
+    .toolsTop
+      float: none
+
+    .servicenavi
+      display: none
+
+    .searchBox
+      display: none
+
+    #searchState:checked ~ .toolsTop .searchBox
+      display: block
+      padding: 10px 0
+      margin-left: 0
+
+      form
+        margin-top: 10px
+        width: 100%
+        display: block
+
+        input
+          width: 100%
+          padding-right: 36px
+          display: block
+
+        button
+          float: right
+
+          &:before
+            margin-top: -28px
+
+    .mobileButtons
+      display: inline-block
+
+    .naviCont
+      display: none
+
+      .subnavi
+        li
+          border-bottom: 1px solid white
+
+          a
+            border-radius: 0
+
+      ul
+        li
+          display: block
+
+          a
+            border-radius: 0
+            display: block
+            padding-left: 15px
+            padding-right: 15px
+
+    #naviState:checked ~ .naviCont
+      display: block

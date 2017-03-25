@@ -305,7 +305,8 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
                 resultLabel.map(e => e.style('opacity', 1));
                 resultSection.select('button').style('display', 'none');
-                resultSection.select('.text').style('display', 'block');
+                resultSection.select('.tooltipcontainer').style('display', 'none');
+                resultSection.select('.text').style('visibility', 'visible');
             }, 700);
         };
         resultSection.select('button').on('click', showResultChart);
