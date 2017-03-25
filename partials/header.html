@@ -1,3 +1,36 @@
+{% set ressorts = [
+    {
+        url: "https://www1.wdr.de/nachrichten/index.html",
+        title: "Nachrichten",
+        id: "nachrichten"
+    },
+    {
+        url: "https://www1.wdr.de/sport/index.html",
+        title: "Sport",
+        id: "sport"
+    },
+    {
+        url: "https://www1.wdr.de/wissen/index.html",
+        title: "Wissen",
+        id: "wissen"
+    },
+    {
+        url: "https://www1.wdr.de/verbraucher/index.html",
+        title: "Verbraucher",
+        id: "verbraucher"
+    },
+    {
+        url: "https://www1.wdr.de/kultur/index.html",
+        title: "Kultur",
+        id: "kultur"
+    },
+    {
+        url: "https://www1.wdr.de/unterhaltung/index.html",
+        title: "Unterhaltung",
+        id: "unterhaltung"
+    }
+] %}
+
 <div id="header">
     <div class="container">
         <a class="hidden" name="goToHead"></a>
@@ -59,34 +92,14 @@
             <div class="subnavi" role="navigation">
                 <a class="hidden" name="wdrNavi" id="wdrNavi"></a>
                 <ul class="ressorts">
+                    {% for ressort in ressorts %}
                     <li>
-                        <a href="https://www1.wdr.de/nachrichten/index.html">
-                            Nachrichten
+                        <a href="{{ ressort.url }}"
+                            {% if ressort.id == active %}class="active"{% endif %}>
+                            {{ ressort.title }}
                         </a>
                     </li>
-                    <li>
-                        <a href="https://www1.wdr.de/sport/index.html">
-                            Sport
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www1.wdr.de/wissen/index.html">
-                            Wissen</a>
-                    </li>
-                    <li>
-                        <a href="https://www1.wdr.de/verbraucher/index.html">
-                            Verbraucher</a>
-                    </li>
-                    <li>
-                        <a href="https://www1.wdr.de/kultur/index.html">
-                            Kultur
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www1.wdr.de/unterhaltung/index.html">
-                            Unterhaltung
-                        </a>
-                    </li>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="masternavi" role="navigation">
