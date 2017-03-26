@@ -148,13 +148,25 @@
   .draggable
     cursor: pointer
 
-  .your-line
-    stroke: $wdr-blue
+  .your-line, .preview-line
     stroke-width: 4
     stroke-dasharray: 1 7
     stroke-linecap: round
     fill: none
 
+  .your-line
+    stroke: $wdr-blue
+
+  .preview-line
+    opacity: 0
+    stroke: #aaaaaa
+
+  &:hover .preview-line
+    opacity: 1
+
 .drawn
   .controls
     display: none
+
+  &:hover .preview-line
+    opacity: 0

@@ -184,6 +184,15 @@ document.addEventListener("DOMContentLoaded", () => {
             .call(applyMargin);
         c.axis = c.svg.append('g');
         c.charts = c.svg.append('g');
+
+        // add a preview line
+        c.preview = c.svg.append('line')
+            .attr('class', 'preview-line')
+            .attr('x1', c.x(medianYear))
+            .attr('y1', c.y(indexedData[medianYear]))
+            .attr('x2', c.x(maxYear))
+            .attr('y2', c.y(indexedData[medianYear]));
+
         const userSel = c.svg.append('path').attr('class', 'your-line');
         c.dots = c.svg.append('g').attr('class', 'dots');
 
@@ -290,5 +299,11 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 700);
         };
         resultSection.select('button').on('click', showResultChart);
+
+        sel.on('mousemove', () => {
+            const pos = d3.mouse(c.svg.node());
+            const y = Math.min(Math.max(pos[1], c.y(graphMaxY)), c.y(graphMinY));
+            c.preview.attr('y2', y);
+        });
     });
 });
