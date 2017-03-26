@@ -137,6 +137,12 @@ document.addEventListener("DOMContentLoaded", () => {
             gradient.append('stop').attr('offset', '0%').attr('class', 'start');
             gradient.append('stop').attr('offset', '100%').attr('class', 'end');
         });
+        c.defs.append('linearGradient')
+            .attr('id', 'gradient-fade')
+            .call(elem => {
+                elem.append('stop').attr('stop-opacity', 1);
+                elem.append('stop').attr('stop-opacity', 0).attr('offset', '80%');
+            });
 
         // make background grid
         c.grid = c.svg.append('g')
