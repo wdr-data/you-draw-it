@@ -230,28 +230,16 @@ document.addEventListener("DOMContentLoaded", () => {
             .append('rect')
             .attr('x', c.x(medianYear))
             .attr('height', c.height);
-        const teasingGraph = c.charts.append('path')
-            .attr('class', 'teasing-line')
-            .attr('clip-path', `url(#teasing-clip-${key})`);
         const teasingLine = d3.line().x(ƒ('year', c.x)).y(d => {
             if(d.year == medianYear) {
                 return c.y(randStart);
             }
             return c.y(Math.random() * randDelta + randMin);
         }).defined(d => d.year >= medianYear);
-        const animationDuration = getComputedStyle(teasingGraph.node()).animationDuration.replace('s', '') * 1000;
-
-        let firstDraw = false;
-        // make random teasing line
-        const teasingLineLoop = function() {
-            // make random chart
-            const winBottom = document.body.scrollTop + window.innerHeight;
-            if(c.bottom > document.body.scrollTop && c.top < winBottom && !firstDraw) {
-                teasingGraph.attr('d', teasingLine(data));
-            }
-        };
-        teasingLineLoop();
-        setInterval(teasingLineLoop, animationDuration);
+        const teasingGraph = c.charts.append('path')
+            .attr('class', 'teasing-line')
+            .attr('clip-path', `url(#teasing-clip-${key})`)
+            .attr('d', teasingLine(data));
 
         /**
          * Interactive user selection part
@@ -274,8 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
 
-                firstDraw = true;
-                c.svg.attr('class', 'drawn');
+                sel.node().classList.add('drawn');
 
                 const pos = d3.mouse(c.svg.node());
                 const year = clamp(medianYear, maxYear, c.x.invert(pos[0]));
