@@ -49,20 +49,9 @@
     &.red
       fill: url(#gradient-red)
 
-  @keyframes hopDot
-    0%, 50%, 100%
-      transform: scale(1)
-
-    25%
-      transform: scale(1.5)
-
   .dots
     circle
       transition: opacity 0.3s
-
-      &.median
-        animation: hopDot 2s infinite
-        transform-origin: center
 
       &.black
         fill: $black
@@ -132,16 +121,9 @@
     text-align: center
     color: #696969
 
-    @keyframes qm-attention
-      0%, 50%, 100%
-        transform: rotate(0deg) scale(1)
-      25%
-        transform: rotate(10deg) scale(1.3)
-
     .qm
       font-size: 153px
       margin-top: 80px
-      animation: qm-attention 2s infinite
 
     .box
       margin-top: 20px
@@ -173,6 +155,3 @@
 .drawn
   .controls
     display: none
-
-    .qm
-      animation: none
