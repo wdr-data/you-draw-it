@@ -83,6 +83,9 @@ document.addEventListener("DOMContentLoaded", () => {
             if(lower == minYear) {
                 makeLabel(minYear, addClass);
             }
+            if(upper == medianYear) {
+                addClass += " median";
+            }
 
             const group = c.charts.append('g');
             group.append('path').attr('d', area(data)).attr('class', 'area ' + addClass);

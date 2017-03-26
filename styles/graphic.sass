@@ -49,15 +49,26 @@
     &.red
       fill: url(#gradient-red)
 
+  @keyframes hopDot
+    0%, 50%, 100%
+      transform: scale(1)
+
+    25%
+      transform: scale(1.5)
+
   .dots
     circle
       transition: opacity 0.3s
 
-    .black
-      fill: $black
+      &.median
+        animation: hopDot 2s infinite
+        transform-origin: center
 
-    .red
-      fill: $red
+      &.black
+        fill: $black
+
+      &.red
+        fill: $red
 
   .labels
     @include fulllayer
