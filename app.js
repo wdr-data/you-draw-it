@@ -193,6 +193,17 @@ document.addEventListener("DOMContentLoaded", () => {
             .attr('class', 'titles')
             .call(applyMargin);
 
+        c.controls = sel.append('div')
+            .attr('class', 'controls')
+            .call(applyMargin)
+            .style('padding-left', c.x(medianYear) + 'px');
+        c.controls.append('div')
+            .attr('class', 'qm')
+            .text('?');
+        c.controls.append('div')
+            .attr('class', 'box')
+            .text('Was schätzen Sie?');
+
         // make chart
         const charts = periods.map((entry, key) => {
             const lower = key > 0 ? periods[key-1].year : minYear;
