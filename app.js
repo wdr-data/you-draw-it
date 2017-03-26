@@ -234,27 +234,6 @@ document.addEventListener("DOMContentLoaded", () => {
             .attr('fill', 'none');
         resultLabel.map(e => e.style('opacity', 0));
 
-        const randStart = indexedData[medianYear];
-        const randMin = (randStart - graphMinY) * 0.3 + graphMinY;
-        const randMax = (graphMaxY - randStart) * 0.5 + randStart;
-        const randDelta = randMax-randMin;
-        const teasingClip = c.charts.append('clipPath')
-            .attr('class', 'teasing-clip')
-            .attr('id', `teasing-clip-${key}`)
-            .append('rect')
-            .attr('x', c.x(medianYear))
-            .attr('height', c.height);
-        const teasingLine = d3.line().x(ƒ('year', c.x)).y(d => {
-            if(d.year == medianYear) {
-                return c.y(randStart);
-            }
-            return c.y(Math.random() * randDelta + randMin);
-        }).defined(d => d.year >= medianYear);
-        const teasingGraph = c.charts.append('path')
-            .attr('class', 'teasing-line')
-            .attr('clip-path', `url(#teasing-clip-${key})`)
-            .attr('d', teasingLine(data));
-
         /**
          * Interactive user selection part
          */

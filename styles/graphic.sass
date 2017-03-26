@@ -170,35 +170,7 @@
     stroke-linecap: round
     fill: none
 
-  @keyframes lineAnimation
-    0%, 50%
-      opacity: 1
-    60%, 100%
-      opacity: 0
-
-  .teasing-line
-    stroke: #bebebe
-    stroke-width: 3
-    stroke-dasharray: 1 7
-    stroke-linecap: round
-    fill: none
-    animation: lineAnimation $teasing-animation-duration infinite
-
-  @keyframes clipAnimation
-    0%, 10%
-      width: 0
-    50%
-      width: 100%
-
-  .teasing-clip
-    rect
-      animation: clipAnimation $teasing-animation-duration infinite
-
 .drawn
-  .teasing-line, .teasing-clip rect
-    display: none
-    animation: none
-
   .controls
     display: none
 
