@@ -290,7 +290,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (!completed && d3.mean(yourData, ƒ('defined')) == 1) {
                     completed = true;
-                    resultSection.style('visibility', 'visible');
+                    resultSection.node().classList.add('finished');
+                    resultSection.select('button').node().removeAttribute('disabled');
                 }
             });
 
@@ -302,9 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
             dragArea.attr('class', '');
             setTimeout(() => {
                 resultLabel.map(e => e.style('opacity', 1));
-                resultSection.select('button').style('display', 'none');
-                resultSection.select('.tooltipcontainer').style('display', 'none');
-                resultSection.select('.text').style('visibility', 'visible');
+                resultSection.node().classList.add('shown');
             }, 700);
         };
         resultSection.select('button').on('click', showResultChart);

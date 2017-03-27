@@ -58,7 +58,6 @@ body
     font-size: 24px
 
   .result
-    visibility: hidden
     position: relative
     margin-bottom: 70px
 
@@ -78,7 +77,12 @@ body
         cursor: pointer
         outline: none
 
+        &[disabled]
+          background: #ccc
+          cursor: not-allowed
+
       .tooltipcontainer
+        display: none
         left: 50%
         position: absolute
         opacity: 0
@@ -115,6 +119,17 @@ body
 
         &:first-of-type
           margin-top: 30px
+
+    &.finished
+      .tooltipcontainer
+        display: block
+
+    &.shown
+      .actionContainer
+        display: none
+
+      .text
+        visibility: visible
 
   .tooltiptext::after
     	bottom: 100%
