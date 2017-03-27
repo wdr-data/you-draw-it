@@ -159,7 +159,8 @@
 
   .preview-line
     opacity: 0
-    stroke: url(#gradient-fade)
+    stroke: #aaaaaa
+    marker-end: url(#preview-arrow)
 
   &:hover .preview-line
     opacity: 1
@@ -171,6 +172,6 @@
   &:hover .preview-line
     opacity: 0
 
-#gradient-fade
-  stop:first-of-type
-    stop-color: #aaaaaa
+#preview-arrow
+  path
+    fill: #aaaaaa

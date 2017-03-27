@@ -137,12 +137,15 @@ document.addEventListener("DOMContentLoaded", () => {
             gradient.append('stop').attr('offset', '0%').attr('class', 'start');
             gradient.append('stop').attr('offset', '100%').attr('class', 'end');
         });
-        c.defs.append('linearGradient')
-            .attr('id', 'gradient-fade')
-            .call(elem => {
-                elem.append('stop').attr('stop-opacity', 1);
-                elem.append('stop').attr('stop-opacity', 0).attr('offset', '80%');
-            });
+        c.defs.append('marker')
+            .attr('id', 'preview-arrow')
+            .attr('orient', 'auto')
+            .attr('markerWidth', 2)
+            .attr('markerHeight', 4)
+            .attr('refX', 0.1)
+            .attr('refY', 2)
+            .append('path')
+            .attr('d', 'M0,0 V4 L2,2 Z');
 
         // make background grid
         c.grid = c.svg.append('g')
@@ -196,7 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .attr('class', 'preview-line')
             .attr('x1', c.x(medianYear))
             .attr('y1', c.y(indexedData[medianYear]))
-            .attr('x2', c.x(maxYear))
+            .attr('x2', c.x(medianYear)+50)
             .attr('y2', c.y(indexedData[medianYear]));
 
         const userSel = c.svg.append('path').attr('class', 'your-line');
