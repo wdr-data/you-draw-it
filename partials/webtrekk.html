@@ -1,4 +1,17 @@
 <script>
+    const insertScript = function(url) {
+        const script = document.createElement('script');
+        script.src = url;
+        script.async = true;
+        document.body.appendChild(script);
+
+        return {
+            then: function(cb) {
+                script.addEventListener('load', cb);
+            }
+        }
+    };
+
     window.wdrWebtrekkBuildArr = [
         'WDR',
         'Datenprojekte',
@@ -8,8 +21,8 @@
         'Was schätzen Sie?'
     ];
 
-    const script = document.createElement('script');
-    script.src = "http://www.wdr.de/themen/global/tracker/tracker.min.js";
-    script.async = true;
-    document.body.appendChild(script);
+    insertScript("bower_components/jquery/dist/jquery.slim.min.js")
+        .then(function() {
+            insertScript("https://www.wdr.de/themen/global/tracker/tracker.min.js")
+        });
 </script>
