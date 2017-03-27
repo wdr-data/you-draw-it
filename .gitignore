@@ -8,3 +8,6 @@ build/
 *.zip
 
 /fonts/
+
+# config
+.env

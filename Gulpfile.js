@@ -7,10 +7,12 @@ const yaml = require('js-yaml');
 const markdownIt = require('markdown-it')();
 const marked = require('marked');
 const cssUrlParser = require('css-url-parser');
+const ftp = require('vinyl-ftp');
 const _ = require('lodash');
 const $ = require('gulp-load-plugins')();
 
 const dist = 'build';
+require('dotenv').config({silent: true});
 
 gulp.task('styles', function() {
     return gulp.src('styles/main.sass')
@@ -103,4 +105,17 @@ gulp.task('copy:dist', function() {
         .pipe(gulp.dest(dist));
 });
 
-gulp.task('default', ['fonts', 'styles', 'templates', 'copy:dist']);
+gulp.task('build', ['fonts', 'styles', 'templates', 'copy:dist']);
+
+gulp.task('upload', ['build'], function() {
+    const conn = ftp.create({
+        host: process.env.FTP_HOST,
+        user: process.env.FTP_USER,
+        pass: process.env.FTP_PASS
+    });
+
+    return gulp.src(path.join(dist, '**'), { buffer: false })
+        .pipe(conn.dest('/'));
+});
+
+gulp.task('default', ['build']);
