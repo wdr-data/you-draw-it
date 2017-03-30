@@ -27,7 +27,7 @@ gulp.task('templates', function() {
             const files = fs.readdirSync('data');
             const data = files.map(function(file) {
                 let filedata = yaml.load(fs.readFileSync(path.join('data', file)).toString());
-                filedata.key = path.basename(file, '.yml');
+                filedata.key = path.basename(file, '.yml').replace(/^[0-9]+_?/, '');
                 return filedata;
             });
             return {
