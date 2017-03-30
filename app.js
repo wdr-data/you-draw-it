@@ -241,7 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const resultClip = c.charts.append('clipPath')
             .attr('id', `result-clip-${key}`)
             .append('rect')
-            .style('width', c.x(medianYear) + 'px')
+            .attr('width', c.x(medianYear))
             .attr('height', c.height);
         const resultLabel = charts[charts.length-1].slice(1, 3);
         resultChart.attr('clip-path', `url(#result-clip-${key})`)
@@ -298,7 +298,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const showResultChart = function() {
             resultShown = true;
-            resultClip.style('width', c.x(maxYear) + 'px');
+            resultClip.transition()
+                .duration(700)
+                .attr('width', c.x(maxYear));
             dragArea.attr('class', '');
             setTimeout(() => {
                 resultLabel.map(e => e.style('opacity', 1));
