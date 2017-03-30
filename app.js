@@ -226,7 +226,7 @@
 
             // configure axes
             c.xAxis = d3.axisBottom().scale(c.x);
-            c.xAxis.ticks(maxYear - minYear).tickFormat(ƒ());
+            c.xAxis.tickFormat(d => "'" + String(d).substr(2)).ticks(maxYear - minYear);
             drawAxis(c);
 
             c.titles = sel.append('div')
