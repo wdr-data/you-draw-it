@@ -218,11 +218,8 @@ document.addEventListener("DOMContentLoaded", () => {
             .call(applyMargin)
             .style('padding-left', c.x(medianYear) + 'px');
         c.controls.append('div')
-            .attr('class', 'qm')
-            .text('?');
-        c.controls.append('div')
             .attr('class', 'box')
-            .text('Was schätzen Sie?');
+            .text('Zeichnen Sie die Linie zu Ende');
 
         // make chart
         const charts = periods.map((entry, key) => {
