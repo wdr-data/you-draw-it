@@ -104,7 +104,7 @@
 
                 return [
                     group,
-                ].concat(makeLabel(upper, addClass));
+                ].concat(makeLabel(upper, svgClass));
             };
 
             const clamp = function (a, b, c) {
