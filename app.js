@@ -16,6 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        const isMobile = window.innerWidth < 760;
+
         const minYear = data[0].year;
         const maxYear = data[data.length - 1].year;
         const periods = [
@@ -59,11 +61,19 @@ document.addEventListener("DOMContentLoaded", () => {
             const text = String(data).replace('.', ',') + (question.unit ? ' ' + question.unit : '');
 
             const label = c.labels.append('div')
-                .attr('class', 'data-label ' + addClass)
+                .classed('data-label', true)
+                .classed(addClass, true)
                 .style('left', x + 'px')
                 .style('top', y + 'px');
             label.append('span')
                 .text(text);
+
+            if(pos == minYear && isMobile) {
+                label.classed('edge-left', true);
+            }
+            if(pos == maxYear && isMobile) {
+                label.classed('edge-right', true);
+            }
 
             return [
                 c.dots.append('circle')
@@ -98,8 +108,15 @@ document.addEventListener("DOMContentLoaded", () => {
             return Math.max(a, Math.min(b, c))
         };
 
+        // make visual area empty
         sel.html('');
-        const margin = {top: 20, right: 50, bottom: 20, left: 50};
+
+        const margin = {
+            top: 20,
+            right: isMobile ? 20 : 50,
+            bottom: 20,
+            left: isMobile ? 20 : 50
+        };
         const width = sel.node().offsetWidth;
         const height = 400;
         const c = {
