@@ -83,13 +83,11 @@ document.addEventListener("DOMContentLoaded", () => {
             if(lower == minYear) {
                 makeLabel(minYear, addClass);
             }
-            if(upper == medianYear) {
-                addClass += " median";
-            }
+            const svgClass = addClass + (upper == medianYear ? " median" : '');
 
             const group = c.charts.append('g');
-            group.append('path').attr('d', area(data)).attr('class', 'area ' + addClass);
-            group.append('path').attr('d', line(data)).attr('class', 'line ' + addClass);
+            group.append('path').attr('d', area(data)).attr('class', 'area ' + svgClass).attr('fill', `url(#gradient-${addClass})`);
+            group.append('path').attr('d', line(data)).attr('class', 'line ' + svgClass);
 
             return [
                 group,
