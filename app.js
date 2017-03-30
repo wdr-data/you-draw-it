@@ -212,7 +212,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // add a preview line
         c.preview = c.svg.append('line')
             .attr('class', 'preview-line')
-            .attr('marker-end', 'url(#preview-arrow)')
             .attr('x1', c.x(medianYear))
             .attr('y1', c.y(indexedData[medianYear]))
             .attr('x2', c.x(medianYear)+50)
