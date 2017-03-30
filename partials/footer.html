@@ -1,0 +1,29 @@
+<footer>
+    <div class="foot container">
+        <div class="left">
+            <h2 class="hidden">Globale Links</h2>
+            <ul class="help">
+                <li>
+                    <a href="http://www1.wdr.de/impressum/">Impressum</a>
+                </li>
+                <li>
+                    <a href="http://www1.wdr.de/hilfe/datenschutz102.html">Datenschutz</a>
+                </li>
+                <li>
+                    <a href="http://www1.wdr.de/hilfe/">Hilfe</a>
+                </li>
+                <li>
+                    <a href="http://www1.wdr.de/kontakt/">Kontakt</a>
+                </li>
+            </ul>
+            <p class="copy">
+                {% set now = Date() %}
+                <a href="http://www1.wdr.de/copyright/">© WDR {{ now|date('Y') }}</a>
+            </p>
+        </div>
+        <a class="logo" href="http://www1.wdr.de/">
+            <img alt="zu Startseite WDR" title="zu Startseite WDR" src="images/wdr_logo.svg">
+        </a>
+    </div>
+    <a href="#goToHead" class="hidden">Zum Anfang</a>
+</footer>
