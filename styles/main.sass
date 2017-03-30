@@ -111,12 +111,19 @@ body
       a
         display: block
         text-align: left
-        padding-left: 20px
-        padding-bottom: 5px
-        border-left: 2px solid black
+        padding: 0.3em 0
+        border-bottom: 1px solid #606365
+        color: #1d2124
+        position: relative
+        left: 0
+        right: 0
 
         &:first-of-type
+          border-top: 1px solid #606365
           margin-top: 30px
+
+        &:hover
+          background-color: #f0f0f0
 
     &.finished
       .tooltipcontainer
