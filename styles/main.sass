@@ -42,9 +42,6 @@ body
   text-align: center
   margin: 0 auto 80px auto
 
-  h1
-    font-size: 35px
-
   p
     line-height: 1.6
 
@@ -64,10 +61,6 @@ body
     margin-bottom: 70px
 
     .actionContainer
-      position: absolute
-      left: 0
-      right: 0
-
       button
         display: block
         margin: 20px auto
@@ -105,7 +98,7 @@ body
     .text
       max-width: $max-width * 0.5
       margin: 10px auto
-      visibility: hidden
+      display: none
       text-align: center
 
       p
@@ -137,7 +130,7 @@ body
         display: none
 
       .text
-        visibility: visible
+        display: block
 
   .tooltiptext::after
     	bottom: 100%
