@@ -58,12 +58,9 @@ gulp.task('templates', function() {
 
 gulp.task('scripts', function() {
     return gulp.src('app.js')
-        .pipe($.webpack({
-            output: {
-                filename: 'app.js'
-            }
+        .pipe($.babel({
+            presets: ['es2015']
         }))
-        .pipe(gulp.dest('.tmp'))
         .pipe(gulp.dest(dist));
 });
 
@@ -101,11 +98,11 @@ gulp.task('serve', ['fonts:develop', 'styles', 'templates'], function() {
 });
 
 gulp.task('copy:dist', function() {
-    return gulp.src(['bower_components/**/*', 'app.js', 'images/**/*', 'styles/*.css'], { base: './' })
+    return gulp.src(['bower_components/**/*', 'images/**/*', 'styles/*.css'], { base: './' })
         .pipe(gulp.dest(dist));
 });
 
-gulp.task('build', ['fonts', 'styles', 'templates', 'copy:dist']);
+gulp.task('build', ['fonts', 'styles', 'scripts', 'templates', 'copy:dist']);
 
 gulp.task('upload', ['build'], function() {
     const conn = ftp.create({
