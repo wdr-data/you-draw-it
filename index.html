@@ -113,6 +113,11 @@
         <p>Ebenso ein Dank an Mike Bostock:</p>
         <a href="https://d3js.org/">D3.js - Data Driven Documents</a>
     </div>
+
+    <div class="updatedAt">
+        {% set now = Date() %}
+        Stand: {{ now|date('d.m.Y') }}
+    </div>
 </article>
 
 {% include "partials/breadcrumb.html" %}
