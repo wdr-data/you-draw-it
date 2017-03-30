@@ -44,6 +44,11 @@
                 <h2>{{ question.heading|mdi }}</h2>
                 <h3>{{ question.subheading|mdi }}</h3>
                 <div class="you-draw-it {{ question.key }}" data-key="{{ question.key }}"></div>
+                <div class="accessibility">
+                    <a href="{{ question.accessibility }}" title="Sehen Sie sich die Daten der Grafik als Tabelle an">
+                        Barrierefreie Tabelle
+                    </a>
+                </div>
                 <div class="result {{ question.key }}">
                     <div class="actionContainer">
                         <button class="showAction" disabled>Klick: Wie war's tatsächlich?</button>
