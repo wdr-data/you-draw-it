@@ -23,8 +23,8 @@
             const maxYear = data[data.length - 1].year;
             const periods = [
                 {year: 2010, class: 'black', title: "Amtszeit\nJürgen Rüttgers"},
-                {year: 2012, class: 'red', title: "I. Amtszeit\nHannelore Kraft"},
-                {year: Math.min(2017, maxYear), class: 'red', title: "II. Amtszeit\nHannelore Kraft"}
+                {year: 2012, class: 'red', title: "1. Amtszeit\nHannelore Kraft"},
+                {year: Math.min(2017, maxYear), class: 'red', title: "2. Amtszeit\nHannelore Kraft"}
             ];
             const medianYear = periods[periods.length - 2].year;
             const minY = d3.min(data, d => d.value);
@@ -215,7 +215,6 @@
             // add a preview line
             c.preview = c.svg.append('line')
                 .attr('class', 'preview-line')
-                .attr('marker-end', 'url(#preview-arrow)')
                 .attr('x1', c.x(medianYear))
                 .attr('y1', c.y(indexedData[medianYear]))
                 .attr('x2', c.x(medianYear) + 50)
