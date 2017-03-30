@@ -52,9 +52,25 @@
             };
 
             const drawAxis = function (c) {
-                c.axis.attr("class", "x axis")
+                c.axis.append('g')
+                    .attr("class", "x axis")
                     .attr("transform", "translate(0," + c.height + ")")
                     .call(c.xAxis);
+                // Null-Linie
+                if(graphMinY < 0) {
+                    c.axis.append('g')
+                        .classed('nullaxis', true)
+                        .attr("transform", "translate(0," + c.y(0) + ")")
+                        .call(
+                            d3.axisBottom(c.x)
+                                .tickValues([])
+                                .tickSize(0)
+                        );
+                }
+                // null auf y-achse
+                c.axis.append('text')
+                    .text("0")
+                    .attr('transform', "translate(-15, " + (c.y(0)+5) + ")");
             };
 
             const makeLabel = function (pos, addClass) {
