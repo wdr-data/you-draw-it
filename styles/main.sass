@@ -38,21 +38,14 @@ body
       text-decoration: underline
 
 .intro
-  max-width: $max-width * 0.5
-  text-align: center
-  margin: 0 auto 80px auto
-
-  h1
-    font-size: 35px
+  margin-bottom: 80px
 
   p
     line-height: 1.6
 
 .question
   h2, h3
-    max-width: $max-width * 0.8
-    margin: 10px auto
-    text-align: center
+    margin: 10px 0
 
   .accessibility
     margin: 20px 0 10px 0
@@ -64,9 +57,6 @@ body
     margin-bottom: 70px
 
     .actionContainer
-      position: absolute
-      left: 0
-      right: 0
 
       button
         display: block
@@ -103,10 +93,9 @@ body
           white-space: nowrap
 
     .text
-      max-width: $max-width * 0.5
+      max-width: $max-width * 0.6
       margin: 10px auto
-      visibility: hidden
-      text-align: center
+      display: none
 
       p
         line-height: 1.5
@@ -137,7 +126,7 @@ body
         display: none
 
       .text
-        visibility: visible
+        display: block
 
   .tooltiptext::after
     	bottom: 100%
