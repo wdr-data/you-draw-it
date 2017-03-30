@@ -283,35 +283,39 @@
             let completed = false;
             let resultShown = false;
 
-            const drag = d3.drag()
-                .on('drag', () => {
-                    if (resultShown) {
-                        return;
-                    }
+            const interactionHandler = function() {
+                if (resultShown) {
+                    return;
+                }
 
-                    sel.node().classList.add('drawn');
+                sel.node().classList.add('drawn');
 
-                    const pos = d3.mouse(c.svg.node());
-                    const year = clamp(medianYear, maxYear, c.x.invert(pos[0]));
-                    const value = clamp(c.y.domain()[0], c.y.domain()[1], c.y.invert(pos[1]));
+                const pos = d3.mouse(c.svg.node());
+                const year = clamp(medianYear, maxYear, c.x.invert(pos[0]));
+                const value = clamp(c.y.domain()[0], c.y.domain()[1], c.y.invert(pos[1]));
 
-                    yourData.forEach(d => {
-                        if (Math.abs(d.year - year) < .5 && d.year > medianYear) {
+                yourData.forEach(d => {
+                    if(d.year > medianYear) {
+                        if(Math.abs(d.year - year) < .5) {
                             d.value = value;
+                        }
+                        if(d.year - year < 0.5) {
                             d.defined = true
                         }
-                    });
-
-                    userSel.attr('d', userLine.defined(ƒ('defined'))(yourData));
-
-                    if (!completed && d3.mean(yourData, ƒ('defined')) == 1) {
-                        completed = true;
-                        resultSection.node().classList.add('finished');
-                        resultSection.select('button').node().removeAttribute('disabled');
                     }
                 });
 
-            c.svg.call(drag);
+                userSel.attr('d', userLine.defined(ƒ('defined'))(yourData));
+
+                if (!completed && d3.mean(yourData, ƒ('defined')) == 1) {
+                    completed = true;
+                    resultSection.node().classList.add('finished');
+                    resultSection.select('button').node().removeAttribute('disabled');
+                }
+            };
+
+            c.svg.call(d3.drag().on('drag', interactionHandler));
+            c.svg.on('click', interactionHandler);
 
             const showResultChart = function () {
                 resultShown = true;
