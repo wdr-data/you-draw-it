@@ -296,7 +296,7 @@
             const userLine = d3.line().x(ƒ('year', c.x)).y(ƒ('value', c.y));
 
             if(!state[key].yourData) {
-                state[key].yourData = data.map(d => ({year: d.year, value: d.value, defined: 0}))
+                state[key].yourData = data.map(d => ({year: d.year, value: indexedData[medianYear], defined: 0}))
                     .filter(d => {
                         if (d.year == medianYear) d.defined = true;
                         return d.year >= medianYear
