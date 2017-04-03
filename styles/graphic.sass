@@ -71,6 +71,7 @@
     .data-label
       position: absolute
       transition: opacity 0.3s
+      z-index: 2
 
       span
         position: relative
@@ -113,6 +114,15 @@
           background-color: $red
         &:after
           border-top-color: $red
+
+      &.your-result
+        position: absolute
+        z-index: 1
+
+        span
+          background-color: $wdr-blue
+        &:after
+          border-top-color: $wdr-blue
 
   .titles
     @include fulllayer

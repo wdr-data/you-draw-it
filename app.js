@@ -79,11 +79,17 @@
                     .attr('transform', "translate(-15, " + (c.y(0)+5) + ")");
             };
 
+            const formatValue = function(val, defaultPrecision) {
+                const data = question.precision ?
+                    Number(val).toFixed(question.precision) :
+                    defaultPrecision ? Number(val).toFixed(defaultPrecision) : val;
+                return String(data).replace('.', ',') + (question.unit ? ' ' + question.unit : '');
+            };
+
             const makeLabel = function (pos, addClass) {
                 const x = c.x(pos);
                 const y = c.y(indexedData[pos]);
-                const data = question.precision ? Number(indexedData[pos]).toFixed(question.precision) : indexedData[pos];
-                const text = String(data).replace('.', ',') + (question.unit ? ' ' + question.unit : '');
+                const text = formatValue(indexedData[pos]);
 
                 const label = c.labels.append('div')
                     .classed('data-label', true)
@@ -307,6 +313,24 @@
 
             const drawUserLine = function() {
                 userSel.attr('d', userLine.defined(ƒ('defined'))(state[key].yourData));
+
+                const d = state[key].yourData[state[key].yourData.length-1];
+                if(!d.defined) {
+                    return;
+                }
+
+                const yourResult = c.labels.selectAll('.your-result')
+                    .data([d]);
+                yourResult.enter()
+                    .append('div')
+                    .classed('data-label your-result', true)
+                    .classed('edge-right', isMobile)
+                    .merge(yourResult)
+                    .style('left', () => c.x(maxYear) + 'px')
+                    .style('top', r => c.y(r.value) + 'px')
+                    .html('')
+                    .append('span')
+                    .text(r => formatValue(r.value, 2));
             };
             drawUserLine();
 
