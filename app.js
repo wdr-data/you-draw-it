@@ -1,4 +1,6 @@
 (function() {
+    const state = {};
+
     const drawGraphs = function () {
         d3.selectAll('.you-draw-it').each(function () {
             const sel = d3.select(this);
@@ -11,6 +13,10 @@
                     value: indexedData[key]
                 }
             });
+
+            if(!state[key]) {
+                state[key] = {};
+            }
 
             if (data.length < 1) {
                 console.log("No data available for:", key);
@@ -289,18 +295,23 @@
              */
             const userLine = d3.line().x(ƒ('year', c.x)).y(ƒ('value', c.y));
 
-            let yourData = data.map(d => ({year: d.year, value: d.value, defined: 0}))
-                .filter(d => {
-                    if (d.year == medianYear) d.defined = true;
-                    return d.year >= medianYear
-                });
+            if(!state[key].yourData) {
+                state[key].yourData = data.map(d => ({year: d.year, value: d.value, defined: 0}))
+                    .filter(d => {
+                        if (d.year == medianYear) d.defined = true;
+                        return d.year >= medianYear
+                    });
+            }
 
             const resultSection = d3.select('.result.' + key);
-            let completed = false;
-            let resultShown = false;
+
+            const drawUserLine = function() {
+                userSel.attr('d', userLine.defined(ƒ('defined'))(state[key].yourData));
+            };
+            drawUserLine();
 
             const interactionHandler = function() {
-                if (resultShown) {
+                if (state[key].resultShown) {
                     return;
                 }
 
@@ -310,7 +321,7 @@
                 const year = clamp(medianYear, maxYear, c.x.invert(pos[0]));
                 const value = clamp(c.y.domain()[0], c.y.domain()[1], c.y.invert(pos[1]));
 
-                yourData.forEach(d => {
+                state[key].yourData.forEach(d => {
                     if(d.year > medianYear) {
                         if(Math.abs(d.year - year) < .5) {
                             d.value = value;
@@ -321,10 +332,10 @@
                     }
                 });
 
-                userSel.attr('d', userLine.defined(ƒ('defined'))(yourData));
+                drawUserLine();
 
-                if (!completed && d3.mean(yourData, ƒ('defined')) == 1) {
-                    completed = true;
+                if (!state[key].completed && d3.mean(state[key].yourData, ƒ('defined')) == 1) {
+                    state[key].completed = true;
                     resultSection.node().classList.add('finished');
                     resultSection.select('button').node().removeAttribute('disabled');
                 }
@@ -334,7 +345,7 @@
             c.svg.on('click', interactionHandler);
 
             const showResultChart = function () {
-                resultShown = true;
+                state[key].resultShown = true;
                 resultClip.transition()
                     .duration(700)
                     .attr('width', c.x(maxYear));
@@ -345,6 +356,9 @@
                 }, 700);
             };
             resultSection.select('button').on('click', showResultChart);
+            if(state[key].resultShown) {
+                showResultChart();
+            }
 
             sel.on('mousemove', () => {
                 const pos = d3.mouse(c.svg.node());
