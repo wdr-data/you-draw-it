@@ -18,6 +18,8 @@
     "dotenv": "^4.0.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
+    "gulp-clean-css": "^3.0.4",
+    "gulp-cssimport": "^5.0.0",
     "gulp-data": "^1.2.1",
     "gulp-download": "0.0.1",
     "gulp-handlebars-html": "0.0.2",

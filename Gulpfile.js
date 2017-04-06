@@ -18,6 +18,10 @@ gulp.task('styles', function() {
     return gulp.src('styles/main.sass')
         .pipe($.sass())
         .pipe(gulp.dest(path.join('.tmp', 'styles')))
+        .pipe($.cssimport({
+            includePaths: ['styles']
+        }))
+        .pipe($.cleanCss())
         .pipe(gulp.dest(path.join(dist, 'styles')));
 });
 
@@ -104,7 +108,7 @@ gulp.task('images', function() {
 });
 
 gulp.task('copy:dist', function() {
-    return gulp.src(['bower_components/**/*', 'styles/*.css'], { base: './' })
+    return gulp.src(['bower_components/**/*'], { base: './' })
         .pipe(gulp.dest(dist));
 });
 
