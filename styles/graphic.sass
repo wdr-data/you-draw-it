@@ -47,16 +47,8 @@
     circle
       transition: opacity 0.3s
 
-      @keyframes dotHop
-        0%, 20%, 40%, 100%
-          transform: scale(1)
-        10%, 30%
-          transform: scale(1.8)
-
       &.median
         cursor: pointer
-        animation: dotHop 2s infinite
-        transform-origin: center
 
       &.black
         fill: $black
