@@ -17,16 +17,11 @@ require('dotenv').config({silent: true});
 gulp.task('styles', function() {
     return gulp.src('styles/main.sass')
         .pipe($.sass())
-        .pipe(gulp.dest(path.join('.tmp', 'styles')))
-        .pipe($.cssimport({
-            includePaths: ['styles']
-        }))
-        .pipe($.cleanCss())
-        .pipe(gulp.dest(path.join(dist, 'styles')));
+        .pipe(gulp.dest(path.join('.tmp', 'styles')));
 });
 
 gulp.task('templates', function() {
-    return gulp.src('*.html')
+    return gulp.src('index.html')
         .pipe($.data(function() {
             const files = fs.readdirSync('data');
             const data = files.map(function(file) {
@@ -56,28 +51,34 @@ gulp.task('templates', function() {
                 swig.setFilter('mdi', mdi);
             }
         }))
-        .pipe(gulp.dest('.tmp'))
-        .pipe($.htmlmin({
+        .pipe(gulp.dest('.tmp'));
+});
+
+gulp.task('html', ['styles', 'templates'], function() {
+    return gulp.src('.tmp/index.html')
+        .pipe($.usemin({
+            path: './',
+            css: [
+                $.cssimport({ includePaths: ['styles'] }),
+                $.cleanCss()
+            ],
+            js: [
+                $.babel({ presets: ['es2015'] }),
+                $.minify({
+                    ext: {
+                        min:'.js'
+                    },
+                    noSource: true
+                })
+            ]
+        }))
+        .pipe($.if('*.html', $.htmlmin({
             collapseWhitespace: true,
             decodeEntities: true,
             minifyJS: true,
             removeComments: true,
             removeScriptTypeAttributes: true
-        }))
-        .pipe(gulp.dest(dist))
-});
-
-gulp.task('scripts', function() {
-    return gulp.src('app.js')
-        .pipe($.babel({
-            presets: ['es2015']
-        }))
-        .pipe($.minify({
-            ext:{
-                min:'.js'
-            },
-            noSource: true
-        }))
+        })))
         .pipe(gulp.dest(dist));
 });
 
@@ -121,17 +122,21 @@ gulp.task('images', function() {
 });
 
 gulp.task('copy:dist', function() {
-    return gulp.src(['bower_components/**/*'], { base: './' })
+    return gulp.src([
+        'bower_components/jquery/dist/jquery.min.js',
+        'bower_components/d3/d3.min.js'
+    ], { base: './' })
         .pipe(gulp.dest(dist));
 });
 
-gulp.task('build', ['images', 'fonts', 'styles', 'scripts', 'templates', 'copy:dist']);
+gulp.task('build', ['images', 'fonts', 'html', 'copy:dist']);
 
 gulp.task('upload', ['build'], function() {
     const conn = ftp.create({
         host: process.env.FTP_HOST,
         user: process.env.FTP_USER,
-        pass: process.env.FTP_PASS
+        pass: process.env.FTP_PASS,
+        log: $.util.log
     });
 
     return gulp.src([path.join(dist, '**'), '.htaccess'], { buffer: false })
