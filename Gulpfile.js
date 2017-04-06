@@ -134,7 +134,7 @@ gulp.task('upload', ['build'], function() {
         pass: process.env.FTP_PASS
     });
 
-    return gulp.src(path.join(dist, '**'), { buffer: false })
+    return gulp.src([path.join(dist, '**'), '.htaccess'], { buffer: false })
         .pipe(conn.dest('/'));
 });
 

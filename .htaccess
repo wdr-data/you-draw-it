@@ -1,0 +1,18 @@
+# GZip compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
+
+# ----------------------------------------------------------------------
+# Instructs the proxies to cache two versions of the resource: one compressed, and one uncompressed.
+# https://developers.google.com/speed/docs/best-practices/caching#LeverageProxyCaching
+# ----------------------------------------------------------------------
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|xml|gz)$">
+    Header append Vary: Accept-Encoding
+  </FilesMatch>
+</IfModule>
