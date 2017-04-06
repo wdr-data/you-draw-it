@@ -65,6 +65,12 @@ gulp.task('scripts', function() {
         .pipe($.babel({
             presets: ['es2015']
         }))
+        .pipe($.minify({
+            ext:{
+                min:'.js'
+            },
+            noSource: true
+        }))
         .pipe(gulp.dest(dist));
 });
 
