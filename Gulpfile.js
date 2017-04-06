@@ -60,7 +60,8 @@ gulp.task('html', ['styles', 'templates'], function() {
             path: './',
             css: [
                 $.cssimport({ includePaths: ['styles'] }),
-                $.cleanCss()
+                $.cleanCss(),
+                $.rev()
             ],
             js: [
                 $.babel({ presets: ['es2015'] }),
@@ -69,7 +70,8 @@ gulp.task('html', ['styles', 'templates'], function() {
                         min:'.js'
                     },
                     noSource: true
-                })
+                }),
+                $.rev()
             ]
         }))
         .pipe($.if('*.html', $.htmlmin({
