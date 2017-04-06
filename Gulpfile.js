@@ -8,6 +8,7 @@ const markdownIt = require('markdown-it')();
 const marked = require('marked');
 const cssUrlParser = require('css-url-parser');
 const ftp = require('vinyl-ftp');
+const imageminJpegoptim = require('imagemin-jpegoptim');
 const _ = require('lodash');
 const $ = require('gulp-load-plugins')();
 
@@ -119,7 +120,13 @@ gulp.task('serve', ['fonts:develop', 'styles', 'templates'], function() {
 
 gulp.task('images', function() {
     return gulp.src('images/**/*')
-        .pipe($.imagemin())
+        .pipe($.imagemin([
+            imageminJpegoptim({ max: 70 }),
+            $.imagemin.optipng({optimizationLevel: 5}),
+            $.imagemin.svgo({plugins: [{removeViewBox: true}]})
+        ], {
+            verbose: true
+        }))
         .pipe(gulp.dest(path.join(dist, 'images')));
 });
 
@@ -141,7 +148,7 @@ gulp.task('upload', ['build'], function() {
         log: $.util.log
     });
 
-    return gulp.src([path.join(dist, '**'), '.htaccess'], { buffer: false })
+    return gulp.src([path.join(dist, '**'), '.htaccess']/*, { buffer: false }*/)
         .pipe(conn.dest('/'));
 });
 
