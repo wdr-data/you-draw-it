@@ -369,6 +369,10 @@
             c.svg.on('click', interactionHandler);
 
             const showResultChart = function () {
+                if(!state[key].completed) {
+                    return;
+                }
+
                 state[key].resultShown = true;
                 resultClip.transition()
                     .duration(700)
