@@ -57,6 +57,13 @@ gulp.task('templates', function() {
             }
         }))
         .pipe(gulp.dest('.tmp'))
+        .pipe($.htmlmin({
+            collapseWhitespace: true,
+            decodeEntities: true,
+            minifyJS: true,
+            removeComments: true,
+            removeScriptTypeAttributes: true
+        }))
         .pipe(gulp.dest(dist))
 });
 
