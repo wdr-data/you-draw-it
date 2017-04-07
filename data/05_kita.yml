@@ -4,7 +4,7 @@ result: >
         **Der Anteil der betreuten U3-Kinder ist seit 2012 von 18,1% auf 25,7% gestiegen.** Die Quote gibt den Anteil der Kinder wieder, die
           eine Kita besuchen oder zu Tageseltern gehen. NRW liegt im Vergleich der Bundesländer auf dem letzten Platz.
 
-        [NRW bleibt Deutschlands Schlusslicht | **mehr**](http://www1.wdr.de/nachrichten/landespolitik/nachrichten/landespolitik/landtagswahl/wss-kinderbetreuung-100.html)
+        [NRW bleibt Deutschlands Schlusslicht | **mehr**](http://www1.wdr.de/nachrichten/landespolitik/landtagswahl/wss-kinderbetreuung-100.html)
 
 data:
   2007: 6.9
@@ -17,5 +17,5 @@ data:
   2014: 23.8
   2015: 25.8
   2016: 25.7
-accessibility: http://www1.wdr.de/nachrichten/landespolitik/nachrichten/landespolitik/landtagswahl/wss-kinderbetreuung-barrierefrei-100.html
+accessibility: http://www1.wdr.de/nachrichten/landespolitik/landtagswahl/wss-kinderbetreuung-barrierefrei-100.html
 unit: '%'
