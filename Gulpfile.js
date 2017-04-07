@@ -9,6 +9,7 @@ const marked = require('marked');
 const cssUrlParser = require('css-url-parser');
 const ftp = require('vinyl-ftp');
 const imageminJpegoptim = require('imagemin-jpegoptim');
+const critical = require('critical').stream;
 const _ = require('lodash');
 const $ = require('gulp-load-plugins')();
 
@@ -138,7 +139,19 @@ gulp.task('copy:dist', function() {
         .pipe(gulp.dest(dist));
 });
 
-gulp.task('build', ['images', 'fonts', 'html', 'copy:dist']);
+gulp.task('assets', ['images', 'fonts', 'html', 'copy:dist']);
+
+gulp.task('critical-css', ['assets'], function() {
+    return gulp.src(path.join(dist, 'index.html'))
+        .pipe(critical({
+            base: dist,
+            inline: true,
+            minify: true
+        }))
+        .pipe(gulp.dest(dist));
+});
+
+gulp.task('build', ['assets', 'critical-css']);
 
 gulp.task('upload', ['build'], function() {
     const conn = ftp.create({
