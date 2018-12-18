@@ -90,7 +90,7 @@ const dlFonts = function(dest) {
     const urls = cssUrlParser(fs.readFileSync('styles/fonts.css').toString())
         .filter(pathStr => !fs.existsSync(path.join(dest, pathStr)))
         .map(urlStr => {
-            const tmpUrl = new URL(url.resolve("http://www1.wdr.de/resources/fonts/", urlStr));
+            const tmpUrl = new url.URL(url.resolve("http://www1.wdr.de/resources/fonts/", urlStr));
             return url.format(tmpUrl, { fragment: false, search: false });
         });
 
