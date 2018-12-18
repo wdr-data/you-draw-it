@@ -1,28 +1,28 @@
 @font-face {
     font-family: "WDRSlab";
     font-weight: 400;
-    src: url("../fonts/wdrslab-regularvz-v101-web.eot?#iefix") format("embedded-opentype"), url("../fonts/wdrslab-regularvz-v101-web.woff") format("woff"), url("../fonts/wdrslab-regularvz-v101-web.ttf") format("truetype"), url("../fonts/wdrslab-regularvz-v101-web.svg") format("svg");
+    src: url(../fonts/wdrslab-regularvz-v101-web.eot?#iefix) format("embedded-opentype"), url(../fonts/wdrslab-regularvz-v101-web.woff) format("woff"), url(../fonts/wdrslab-regularvz-v101-web.ttf) format("truetype"), url(../fonts/wdrslab-regularvz-v101-web.svg) format("svg");
 }
 @font-face {
     font-family: "WDRSlab";
     font-weight: 800;
-    src: url("../fonts/wdrslab-boldvz-v101-web.eot?#iefix") format("embedded-opentype"), url("../fonts/wdrslab-boldvz-v101-web.woff") format("woff"), url("../fonts/wdrslab-boldvz-v101-web.ttf") format("truetype"), url("../fonts/wdrslab-boldvz-v101-web.svg") format("svg");
+    src: url(../fonts/wdrslab-boldvz-v101-web.eot?#iefix) format("embedded-opentype"), url(../fonts/wdrslab-boldvz-v101-web.woff) format("woff"), url(../fonts/wdrslab-boldvz-v101-web.ttf) format("truetype"), url(../fonts/wdrslab-boldvz-v101-web.svg) format("svg");
 }
 @font-face {
     font-family: "Thesis";
     font-style: italic;
-    src: url("../fonts/TheSans_LT_TT5_.woff") format("woff"), url("../fonts/TheSans_LT_TT5_.svg") format("svg");
+    src: url(../fonts/TheSans_LT_TT5_.woff) format("woff"), url(../fonts/TheSans_LT_TT5_.svg) format("svg");
 }
 @font-face {
     font-family: "Thesis";
     font-style: italic;
     font-weight: 700;
-    src: url("../fonts/TheSans_LT_TT7_.woff") format("woff"), url("../fonts/TheSans_LT_TT7_.svg") format("svg");
+    src: url(../fonts/TheSans_LT_TT7_.woff) format("woff"), url(../fonts/TheSans_LT_TT7_.svg) format("svg");
 }
 @font-face {
     font-family: "WDR Iconfont";
     font-weight: 400;
-    src: url("../fonts/wdr-iconfont.eot?#iefix") format("embedded-opentype"), url("../fonts/wdr-iconfont.woff") format("woff"), url("../fonts/wdr-iconfont.ttf") format("truetype"), url("../fonts/wdr-iconfont.svg#wdr-iconfont") format("svg");
+    src: url(../fonts/wdr-iconfont.eot?#iefix) format("embedded-opentype"), url(../fonts/wdr-iconfont.woff) format("woff"), url(../fonts/wdr-iconfont.ttf) format("truetype"), url(../fonts/wdr-iconfont.svg#wdr-iconfont) format("svg");
 }
 
 @font-face {
